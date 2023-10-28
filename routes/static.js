@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Static Routes
 // Set up a "public" folder and its subfolders for serving static files
+router.use(express.static("public"));
 
 // Serve files from the "public" folder and its subfolders
 router.use(express.static("public"));
