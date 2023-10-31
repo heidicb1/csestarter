@@ -42,7 +42,7 @@ header a{
 /* Navigation Styles */
 nav {
   clear: both;
-  font-size: 0.5em;
+  font-size: 0.75em;
 }
 
 nav ul {
@@ -50,7 +50,7 @@ nav ul {
   justify-content:space-between;
   background-color: #252339;
   list-style-type: none;
-  margin: 0;
+  margin: 0 20px;
   padding: 0;
   overflow: hidden;
 }
@@ -143,6 +143,10 @@ h1 {
   width: 95%;
 }
 
+.upgradeContainer h2 {
+  font-size: 1em;
+}
+
 .upgradeItem {
   text-align: center;
   color: #ffffff;
@@ -188,35 +192,76 @@ footer p {
   body{
     background-image: url("../images/site/checkerboard.jpg");
   }
-  .wrapper {
+  #wrapper {
       width: 95%;
-      border: #4c96d7 solid 5px;
-      border-radius: 5px;
+      background-color: #ffffff;
+      border: #4c96d7 solid 10px;
+      border-radius: 10px;
       margin: 0 auto;
       margin-top: 20px;
   }
 
-  nav {
-      font-size: 1em;
+  h1 {
+    font-size: 1.25em;
+  }
+
+  .container {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.25em;
+  }
+
+  .itemDetails {
+    float: left;
+  }
+  
+  .container img {
+    width: 100%;
+    float: right;
+  }
+
+  .container .itemDetails{
+    margin-top: 20px;
+    position: absolute;
+    background-color: rgba(237, 238, 237, 0.7);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 240px;
+    width: 240px;
+    z-index: 0; /* Change this value to set the z-index as needed */  
   }
 
   .container h2 {
-      position: absolute;
-      top: -28px;
-      left: 10px;
-  }
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
+
+.container p {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+}
   
-  .container p {
-      position: absolute;
-      top: 12px;
-      left: 10px;
+  .button {
+    position: absolute;
+    top: 165px;
+    left: 10px;
+    padding: 10px;
+    text-align: center;
+    max-width: 80%;
+    color: #ffffff;
+    background-color: #4c96d7;
+    text-decoration: none;
   }
 
-  .button {
-      position: absolute;
-      top: 116px;
-      left: 10px;
-      width: 150px;
+  .reviews h2{
+    font-size: 1.25em;
+  }
+
+  .upgradeContainer h2 {
+    font-size: 1.25em;
   }
 
   footer {
@@ -235,31 +280,26 @@ footer p {
       font-size: 1.5em;
   }
 
+  .reviews {
+    float: right;
+    width: 50%;
+  }
+  
+  .reviews ul {
+    padding: 0 0 0 20px;
+  }
+  
+  .reviews li {
+    padding: 5px;
+    font-size: 1em;
+  }
+
+  .upgradeContainer {
+    float: left;
+    width: 50%;
+  }
+
   footer {
       font-size: 0.8em;
   }
-
-  /* For vehicle display in classification view */
-#inv-display {
-  flex-flow: row wrap;
-  justify-content: flex-start;
-}
-
-#inv-display h2{
-  font-size: 1rem;
-}
-
-#inv-display li {
-  max-width: 200px;
-  flex: 1 0 auto;
-  text-align: center;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-    
-#inv-display div {
-  width: 100%;
-}
 }
