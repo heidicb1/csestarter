@@ -16,6 +16,7 @@ body {
 .wrapper {
   max-width: 100%;
   background-color: #ffffff;
+  height: 100%;
 }
 
 /* Code for the header */
@@ -63,13 +64,13 @@ nav li a {
   display: block;
   color: #ffffff;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 5px;
   text-decoration: none;
 }
 
 nav li a:hover {
-  background-color: #54C7DF;
-  color: #3a3a3a;
+  background-color: #4c96d7;
+  color: #252339;
 }
 
 /* Code for main */
@@ -120,7 +121,7 @@ h1 {
   left: 0;
   right: 0;
   height: 170px;
-  width: 200px;
+  width: 175px;
   z-index: 0;  
 }
 
@@ -191,9 +192,12 @@ footer p {
 @media only screen and (min-width: 37em) {
   body{
     background-image: url("../images/site/checkerboard.jpg");
+    background-size:50%;
+    background-repeat: repeat;
+    display:flex;
   }
   #wrapper {
-      width: 95%;
+      width: 80%;
       background-color: #ffffff;
       border: #4c96d7 solid 10px;
       border-radius: 10px;
@@ -201,14 +205,21 @@ footer p {
       margin-top: 20px;
   }
 
+  /*Navigation Styles*/
+  nav li a {
+    padding: 14px 16px;
+  }
+  
+  /* Code for main */
+  
   h1 {
-    font-size: 1.25em;
+    font-size: 1em;
   }
 
   .container {
     display: inline-block;
     width: 100%;
-    font-size: 1.25em;
+    font-size: 1em;
   }
 
   .itemDetails {
@@ -233,6 +244,7 @@ footer p {
   }
 
   .container h2 {
+    font-size: 1em;
     position: absolute;
     top: 15px;
     left: 10px;
@@ -257,12 +269,14 @@ footer p {
   }
 
   .reviews h2{
-    font-size: 1.25em;
+    font-size: 1em;
   }
 
   .upgradeContainer h2 {
-    font-size: 1.25em;
+    font-size: 1em;
   }
+
+  /* Code for the footer */
 
   footer {
       font-size: 0.6em;
