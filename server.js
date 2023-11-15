@@ -12,7 +12,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute");
+const inventoryRoute = require("./routes/inventoryRoute")
+const utilities = require("./utilities");
 
 /* ***********************
  * View Engine and Templates
@@ -27,10 +28,39 @@ app.set("layout", "./layouts/layout") // not at views root
 app.use(require("./routes/static"))
 
 //Index route
-app.get("/", baseController.buildHome)
+// Wrap the call to baseController.buildHome in the handleErrors function
+app.get("/", utilities.handleErrors(baseController.buildHome));
 
 // Inventory routes
 app.use("/inv", inventoryRoute);
+
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+})
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+// Error-handling middleware using async function
+app.use(async (err, req, res, next) => {
+  // Retrieve navigation data using utility function
+  let nav = await utilities.getNav();
+
+  // Log the error details, including the URL where the error occurred
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  if(err.status == 404){ message = err.message} 
+  else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+
+  // Render the error page with relevant details
+  res.render("errors/error", {
+    title: err.status || 'Server Error', // Set the title to the error status or default to 'Server Error'
+    message, // Pass the error message to the view
+    nav // Pass navigation data to the view
+  });
+});
+
 
 /* ***********************
  * Local Server Information
