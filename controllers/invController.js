@@ -67,7 +67,7 @@ invCont.showItemDetail = async function (req, res) {
   let nav = await utilities.getNav();
 
   // Extract the item name for use in the view
-  const itemName = itemDetails.inv_make + ' ' + itemDetails.inv_model;
+  const itemName = itemDetails.inv_year + ' ' +itemDetails.inv_make + ' ' + itemDetails.inv_model;
 
   // Render the inventory item detail view with the title, navigation, and grid data
   res.render("./inventory/item-detail-view", {
