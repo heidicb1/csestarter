@@ -83,6 +83,41 @@ Util.buildClassificationGrid = async function(data){
     return grid;
   }
   
+  /* **************************************
+ * Build the item view HTML
+ * ************************************ */
+// Define a utility function to construct the HTML grid for the item view
+Util.buildItemGrid = function(itemDetails) {
+  // Initialize the grid variable
+  let grid = '<div id="item-display">';
+
+  // Check if there are item details to display
+  if (itemDetails) {
+    // Build grid items using the provided itemDetails
+    grid += '<div>';
+    grid += '<img src="' + itemDetails.inv_thumbnail + '" alt="Image of ' + itemDetails.inv_make + ' ' + itemDetails.inv_model + ' on CSE Motors" />';
+    grid += '<div class="namePrice">';
+    grid += '<hr />';
+    grid += '<h2>' + itemDetails.inv_make + ' ' + itemDetails.inv_model + '</h2>';
+    grid += '<p>Description: ' + itemDetails.inv_description + '</p>';
+    grid += '<p>Year: ' + itemDetails.inv_year + '</p>';
+    grid += '<p>Price: $' + new Intl.NumberFormat('en-US').format(itemDetails.inv_price) + '</p>';
+    // Add more details as needed
+    grid += '</div>';
+    grid += '</div>';
+  } else {
+    // Display a notice if no item details are found
+    grid += '<p class="notice">Sorry, no details could be found for this inventory item.</p>';
+  }
+
+  // Close the grid
+  grid += '</div>';
+
+  // Return the constructed grid
+  return grid;
+};
+
+
   /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

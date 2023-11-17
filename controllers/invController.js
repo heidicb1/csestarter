@@ -43,6 +43,40 @@ invCont.buildByClassificationId = async function (req, res, next) {
   });
 }
 
+/* ***************************
+ *  Build item view
+ * ************************** */
+
+// Controller function to handle displaying the details of a specific inventory item
+invCont.showItemDetail = async function (req, res) {
+  // Extract the inv_id parameter from the URL
+  const invId = req.params.invId;
+
+  // Fetch inventory item details based on invId
+  const itemDetails = await invModel.getInventoryItemDetailsById(invId);
+
+  // Check if the inventory item exists
+  if (!itemDetails) {
+      return res.status(404).send('Inventory item not found');
+  }
+
+  // Build a grid representation of the inventory item (modify as needed)
+  const grid = utilities.buildItemGrid(itemDetails);
+
+  // Retrieve navigation data using utility function
+  let nav = await utilities.getNav();
+
+  // Extract the item name for use in the view
+  const itemName = itemDetails.inv_make + ' ' + itemDetails.inv_model;
+
+  // Render the inventory item detail view with the title, navigation, and grid data
+  res.render("./inventory/item-detail-view", {
+      title: itemName,
+      nav,
+      grid,
+  });
+}
+
 // Export the invCont object to make the controller functions accessible in other modules
 module.exports = invCont;
 
