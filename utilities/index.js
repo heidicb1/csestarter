@@ -94,16 +94,15 @@ Util.buildItemGrid = function(itemDetails) {
   // Check if there are item details to display
   if (itemDetails) {
       // Build grid items using the provided itemDetails
-      grid += '<div>';
-      grid += '<img src="' + itemDetails.inv_image + '" alt="Image of ' + itemDetails.inv_make + ' ' + itemDetails.inv_model + ' on CSE Motors" />';
+      grid += '<div class="img-details">';
+      grid += '<img src="' + itemDetails.inv_image + '" alt="Image of ' + itemDetails.inv_make + ' ' + itemDetails.inv_model + ' on CSE Motors">';
+      grid += '</div>';
       grid += '<div class="details">';
       grid += '<h2>' + itemDetails.inv_make + ' ' + itemDetails.inv_model + '</h2>';
-      grid += '<p>Year: ' + itemDetails.inv_year + '</p>';
-      grid += '<p>Price: $' + new Intl.NumberFormat('en-US').format(itemDetails.inv_price) + '</p>';
-      grid += '<p>Mileage: ' + new Intl.NumberFormat('en-US').format(itemDetails.inv_miles) + ' miles</p>';
-      grid += '<p>Description: ' + itemDetails.inv_description + '</p>';
-      // Add more details as needed
-      grid += '</div>';
+      grid += '<p><strong>Price: $' + new Intl.NumberFormat('en-US').format(itemDetails.inv_price) + '</strong></p>';
+      grid += '<p><strong>Description:</strong> ' + itemDetails.inv_description + '</p>';
+      grid += '<p><strong>Color:</strong> ' + itemDetails.inv_color + '</p>';
+      grid += '<p><strong>Mileage:</strong> ' + new Intl.NumberFormat('en-US').format(itemDetails.inv_miles) + ' miles</p>';
       grid += '</div>';
   } else {
       // Display a notice if no item details are found
