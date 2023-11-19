@@ -190,9 +190,15 @@ footer p {
 
 /* ********CLASSIFICATION PAGE************** */
 
+/* classification title Custom Vehicles */
+h1.classificationTitle{
+  font-size: 24px;
+  color:#252339;
+}
 /* card display position */
 ul#inv-display {
   width: 100%;
+  justify-content: center;
   padding: 0;
 }
 
@@ -252,7 +258,8 @@ div.namePrice {
   margin-bottom: 10px;
 }
 
-/* Tablet Size viewports */
+/* **********Tablet Size viewports********* */
+
 @media only screen and (min-width: 37em) {
   body{
     background-image: url("../images/site/checkerboard.jpg");
@@ -347,19 +354,39 @@ div.namePrice {
   }
 
 /*  ***********CLASSIFICATION PAGE*********** */
+#inv-display {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .card {
-  /* Flexbox to arrange content in a column */
+  width: 45%; 
+  height: 300px; 
+  margin: 1%;
+  box-sizing: border-box; /* Include padding and border in the width */
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  text-align: center;
-   
-  /* Card size */
-  width:33%;
 }
+.card img {
+  width: 100%;
+  height: 100%; /* Ensure the image takes up the full height of the card */
+  object-fit: cover; /* Maintain the aspect ratio and cover the entire space */
+}
+
+.card .namePrice {
+  flex-grow: 1; /* Allow this div to grow and take up remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.card .namePrice hr {
+  margin-top: auto; /* Push the hr to the bottom of the flex container */
+}
+
 }
 /* *****64em is also 1028px when basefont is 16px***** */
+
 @media only screen and (min-width: 64rem) {
   
   .wrapper {
@@ -392,4 +419,13 @@ div.namePrice {
   footer {
       font-size: 0.8em;
   }
+
+  /*  ***********CLASSIFICATION PAGE*********** */
+
+
+.card {
+  width: 25%; 
+}
+
+
 }
