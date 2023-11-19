@@ -1,7 +1,7 @@
 /* Code for the whole page */
 html{
   box-sizing: border-box;
-  height: 95%;
+
 }
  
 *, *:before, *:after{
@@ -461,12 +461,10 @@ div.namePrice {
 
   /*  ***********CLASSIFICATION PAGE*********** */
 .card {
+  height: 350px; 
   width: 25%; 
 }
 
-/* ************INDIVIDUAL ITEM PAGE********** */
-
 }
-
 
 }
