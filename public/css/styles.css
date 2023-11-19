@@ -461,12 +461,10 @@ div.namePrice {
 
   /*  ***********CLASSIFICATION PAGE*********** */
 .card {
+  height: 350px; 
   width: 25%; 
 }
 
-/* ************INDIVIDUAL ITEM PAGE********** */
-
 }
-
 
 }
