@@ -17,6 +17,36 @@ const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities");
 const errorRoute = require('./routes/errorRoute');
+const session = require("express-session")
+const pool = require('./database/')
+
+
+/* ***********************
+ * Middleware
+ * ************************/
+// Session middleware using connect-pg-simple to store sessions in PostgreSQL
+app.use(session({
+  // Configure the session store using connect-pg-simple
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true, // Create the session table if it's missing
+    pool, // Use the existing database connection pool
+  }),
+  secret: process.env.SESSION_SECRET, // Secret key for session data encryption
+  resave: true, // Forces the session to be saved back to the session store
+  saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
+  name: 'sessionId', // Name of the cookie to store the session ID
+}))
+
+// Express Messages Middleware
+app.use(require('connect-flash')());
+
+// Custom middleware to make flash messages available in templates
+app.use(function(req, res, next){
+  // Make flash messages available in locals for the views
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
 
 
 /* ***********************
