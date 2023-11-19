@@ -188,6 +188,70 @@ footer p {
   margin-top:  0;
 }
 
+/* ********CLASSIFICATION PAGE************** */
+
+/* card display position */
+ul#inv-display {
+  width: 100%;
+  padding: 0;
+}
+
+li.card{
+  padding: 0;
+}
+
+.card {
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  padding: 15px; /* Padding inside the card */
+  margin: 10px; /* Space between cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+  /* Flexbox to arrange content in a column */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+
+  /* Card sizing */
+  width: 100%;
+  
+  /* Card Position with in the ul */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Styles for the card image */
+.card img {
+  width: 100%;
+  border-radius: 8px; /* Rounded corners for images */
+  margin-bottom: 10px; /* Space between image and text */
+}
+
+/* Styles for the hr */
+.card hr {
+  border: 3px solid #252339; /* Change the color as needed */
+  margin: 10px 0; /* Adjust the margin as needed */
+}
+
+/* Styles for the card title */
+.card h2 {
+  font-size: .75em; /* Adjust the font size for the title */
+  margin-bottom: 5px; /* Margin below the title */
+}
+
+/* Styles for the price */
+.card span {
+  font-size: .7em;
+  font-weight: bold; /* Make the price bold */
+  color: #252339; /* Set the price color */
+}
+
+/* Style for spacing of price and name */
+div.namePrice {
+  margin-bottom: 10px;
+}
+
 /* Tablet Size viewports */
 @media only screen and (min-width: 37em) {
   body{
@@ -281,9 +345,21 @@ footer p {
   footer {
       font-size: 0.6em;
   }
-}
 
-/* 64em is also 1028px when basefont is 16px */
+/*  ***********CLASSIFICATION PAGE*********** */
+
+.card {
+  /* Flexbox to arrange content in a column */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+   
+  /* Card size */
+  width:33%;
+}
+}
+/* *****64em is also 1028px when basefont is 16px***** */
 @media only screen and (min-width: 64rem) {
   
   .wrapper {

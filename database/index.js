@@ -29,6 +29,7 @@ if (process.env.NODE_ENV == "development") {
   // Export an object with a query function for executing SQL queries
   module.exports = {
     async query(text, params) {
+      //Error Handling
       try {
         const res = await pool.query(text, params);
         console.log("executed query", { text });
@@ -45,6 +46,6 @@ if (process.env.NODE_ENV == "development") {
     connectionString: process.env.DATABASE_URL,
   });
 
-  // Export the connection pool for non-development environments
+  // Export the connection pool for non-development environments 
   module.exports = pool;
 }

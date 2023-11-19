@@ -53,7 +53,7 @@ Util.buildClassificationGrid = async function(data){
   
       // Iterate through each vehicle in the data and build grid items
       data.forEach(vehicle => { 
-        grid += '<li>';
+        grid += '<li class ="card">';
         grid += '<a href="../../inv/detail/' + vehicle.inv_id 
           + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model 
           + ' details"><img src="' + vehicle.inv_thumbnail 
