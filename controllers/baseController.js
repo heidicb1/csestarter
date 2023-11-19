@@ -10,6 +10,9 @@ baseController.buildHome = async function(req, res) {
     // Retrieve navigation information using the imported utility function
     const nav = await utilities.getNav();
     
+    // Add a test flash message to req
+    // req.flash('notice', 'This is a flash message.');
+
     // Render the "index" view with a title of "Home" and the retrieved navigation data
     res.render("index", { title: "Home", nav });
   } catch (error) {
