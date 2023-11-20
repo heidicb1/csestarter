@@ -1,0 +1,20 @@
+<!-- The Content Heading -->
+<h1><%= title %></h1>
+
+<!-- A Message Block for Flash message -->
+<%- messages() %>
+
+<!-- Login Form -->
+<form action="/login" method="post">
+  <!-- Add your form fields here, for example: -->
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+
+  <button type="submit">Login</button>
+</form>
+
+<!-- Link for Registration -->
+<p>Don't have an account? <a href="/register">Register here</a></p>
