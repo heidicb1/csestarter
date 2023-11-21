@@ -75,7 +75,7 @@ nav li a:hover {
   color: #252339;
 }
 
-/* Code for main */
+/* ********Code for main******* */
 main {
   padding: 20px;
 }
@@ -271,6 +271,69 @@ div.namePrice {
   color:#252339;
   font-size: .8em;
  }
+
+/* ***********LOGIN PAGE*********** */
+.login-wrapper1{
+  background-color: #cccccc; 
+  padding: 3px;
+  border-width: 10px;
+}
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #4c96d7; 
+  padding: 20px;
+  border-width: 10px;
+  
+  box-shadow: 0 0 10px #252339;
+  margin: 5px; 
+}
+
+.login-label {
+  font-size: .8em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #252339; 
+}
+
+.login-input {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #727B83; 
+  border-radius: 5px;
+}
+
+.loginbtn {
+  font-size: .75em;
+  font-weight: bold;
+  padding: 5px 20px;
+  width: 50%; 
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.login-p {
+  font-size: .8em;
+  margin-top: 15px;
+  color: #252339;
+}
+
+.login-a {
+  font-weight: bold;
+  color: #252339;
+  text-decoration: underline;
+}
+
+a:hover {
+  background-color: #252339;
+  color: #4c96d7;
+}
 
 /* **********Tablet Size viewports********* */
 
