@@ -1,18 +1,20 @@
 /* Code for the whole page */
-html{
+html {
   box-sizing: border-box;
 
 }
- 
-*, *:before, *:after{
+
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 1.5em;
-  color:#252339;
-  height:100%;
+  color: #252339;
+  height: 100%;
 }
 
 .wrapper {
@@ -25,12 +27,12 @@ body {
 header {
   padding: 20px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
-header a{
+header a {
   text-decoration: none;
-  color:#252339;
+  color: #252339;
   font-weight: bold;
 }
 
@@ -38,7 +40,7 @@ header a{
   font-size: 1.2em;
 }
 
-#tools{
+#tools {
   font-size: .6em;
 }
 
@@ -50,7 +52,7 @@ nav {
 
 nav ul {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   background-color: #252339;
   list-style-type: none;
   margin: 0 20px;
@@ -75,7 +77,7 @@ nav li a:hover {
   color: #252339;
 }
 
-/* ********Code for main******* */
+/* **Code for main** */
 main {
   padding: 20px;
 }
@@ -87,6 +89,7 @@ main img {
 h1 {
   font-size: 1em;
 }
+
 .container {
   position: relative;
 }
@@ -100,7 +103,7 @@ h1 {
 .container p {
   color: #4c96d7;
   font-size: .8em;
-  margin:5px;
+  margin: 5px;
 }
 
 .button {
@@ -116,7 +119,7 @@ h1 {
   margin: 20px 5px !important;
 }
 
-.container .itemDetails{
+.container .itemDetails {
   position: absolute;
   background-color: rgba(237, 238, 237, 0.7);
   top: 0;
@@ -124,7 +127,7 @@ h1 {
   right: 0;
   height: 170px;
   width: 175px;
-  z-index: 0;  
+  z-index: 0;
 }
 
 .reviews h2 {
@@ -155,15 +158,15 @@ h1 {
   color: #ffffff;
   width: 100%;
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  padding: 10px; 
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
 
-.imageContainer{
+.imageContainer {
   width: 100%;
   height: 100%;
-  padding:5px;
+  padding: 5px;
   background-color: #4c96d7;
   border: 2px solid #252339;
 }
@@ -187,16 +190,16 @@ footer {
 }
 
 footer p {
-  margin-top:  0;
+  margin-top: 0;
 }
 
-/* ********CLASSIFICATION PAGE************** */
+/* **CLASSIFICATION PAGE** */
 
-/* classification title Custom Vehicles */
-h1.classificationTitle{
+h1.classificationTitle {
   font-size: 24px;
-  color:#252339;
+  color: #252339;
 }
+
 /* card display position */
 ul#inv-display {
   width: 100%;
@@ -204,27 +207,21 @@ ul#inv-display {
   padding: 0;
 }
 
-li.card{
+li.card {
   padding: 0;
 }
 
 .card {
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  padding: 15px; /* Padding inside the card */
-  margin: 10px; /* Space between cards */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-
-  /* Flexbox to arrange content in a column */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: stretch;
   text-align: center;
-
-  /* Card sizing */
   width: 100%;
-  
-  /* Card Position with in the ul */
   margin-left: auto;
   margin-right: auto;
 }
@@ -232,27 +229,27 @@ li.card{
 /* Styles for the card image */
 .card img {
   width: 100%;
-  border-radius: 8px; /* Rounded corners for images */
-  margin-bottom: 10px; /* Space between image and text */
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 /* Styles for the hr */
 .card hr {
-  border: 3px solid #252339; /* Change the color as needed */
-  margin: 10px 0; /* Adjust the margin as needed */
+  border: 3px solid #252339;
+  margin: 10px 0;
 }
 
 /* Styles for the card title */
 .card h2 {
-  font-size: .75em; /* Adjust the font size for the title */
-  margin-bottom: 5px; /* Margin below the title */
+  font-size: .75em;
+  margin-bottom: 5px;
 }
 
 /* Styles for the price */
 .card span {
   font-size: .7em;
-  font-weight: bold; /* Make the price bold */
-  color: #252339; /* Set the price color */
+  font-weight: bold;
+  color: #252339;
 }
 
 /* Style for spacing of price and name */
@@ -260,48 +257,47 @@ div.namePrice {
   margin-bottom: 10px;
 }
 
-/* ********INDIVIDUAL ITEM PAGE************** */
+/* **INDIVIDUAL ITEM PAGE** */
 
- .details h2{
-  color:#252339;
+.details h2 {
+  color: #252339;
   font-size: 1em;
- }
+}
 
- .details p{
-  color:#252339;
+.details p {
+  color: #252339;
   font-size: .8em;
- }
+}
 
-/* ***********LOGIN PAGE*********** */
-.login-wrapper1{
-  background-color: #cccccc; 
+/* **LOGIN PAGE** */
+.login-wrapper1 {
+  background-color: #cccccc;
   padding: 3px;
   border-width: 10px;
 }
 
-
 .login-form {
   display: flex;
   flex-direction: column;
-  background-color: #4c96d7; 
+  background-color: #4c96d7;
   padding: 20px;
   border-width: 10px;
-  
+
   box-shadow: 0 0 10px #252339;
-  margin: 5px; 
+  margin: 5px;
 }
 
 .login-label {
   font-size: .8em;
   font-weight: bold;
   margin-top: 10px;
-  color: #252339; 
+  color: #252339;
 }
 
 .login-input {
   padding: 10px;
   margin: 5px 0;
-  border: 1px solid #727B83; 
+  border: 1px solid #727B83;
   border-radius: 5px;
 }
 
@@ -310,7 +306,7 @@ div.namePrice {
   font-size: .75em;
   font-weight: bold;
   padding: 5px 20px;
-  width: 50%; 
+  width: 50%;
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -338,12 +334,10 @@ div.namePrice {
 }
 
 .login-a {
-  background-image: linear-gradient(
-    to right,
-    #4c96d7,
-    #4c96d7 50%,
-    #252339 50%
-  );
+  background-image: linear-gradient(to right,
+      #4c96d7,
+      #4c96d7 50%,
+      #252339 50%);
   background-size: 200% 100%;
   background-position: -100%;
   display: inline-block;
@@ -351,8 +345,8 @@ div.namePrice {
   position: relative;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text; 
-  color: transparent; 
+  background-clip: text;
+  color: transparent;
   transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
@@ -370,15 +364,15 @@ div.namePrice {
 }
 
 .login-a:hover {
- background-position: 0;
+  background-position: 0;
 }
 
 .login-a:hover::before {
-  width:100%;
+  width: 100%;
 }
 
- /* ********REGISTRATION PAGE********** */
- .registration-wrapper1 {
+/* **REGISTRATION PAGE** */
+.registration-wrapper1 {
   background-color: #cccccc;
   padding: 3px;
   border-width: 10px;
@@ -395,7 +389,7 @@ div.namePrice {
 }
 
 .registration-label {
-  width:80%;
+  width: 80%;
   margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
@@ -406,7 +400,7 @@ div.namePrice {
 }
 
 .registration-input {
-  width:80%;
+  width: 80%;
   padding: 10px;
   margin-top: 5px;
   margin-left: auto;
@@ -447,12 +441,10 @@ div.namePrice {
 }
 
 .registration-a {
-  background-image: linear-gradient(
-    to right,
-    #4c96d7,
-    #4c96d7 50%,
-    #252339 50%
-  );
+  background-image: linear-gradient(to right,
+      #4c96d7,
+      #4c96d7 50%,
+      #252339 50%);
   background-size: 200% 100%;
   background-position: -100%;
   display: inline-block;
@@ -488,8 +480,8 @@ div.namePrice {
 /* Password Requirements Message */
 .password-requirements {
   font-size: 0.8em;
-  color: #252339; 
-  width:75%;
+  color: #252339;
+  width: 75%;
   margin-top: 5px;
   margin-left: auto;
   margin-right: auto;
@@ -502,7 +494,7 @@ div.namePrice {
   font-size: .75em;
   font-weight: bold;
   padding: 5px 20px;
-  width: 50%; 
+  width: 50%;
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -517,31 +509,32 @@ div.namePrice {
   color: #252339;
 }
 
-/* !!!!!!!!!MEDIUM SCREEN!!!!!!!!!!!*/
+/* !!!!!!!!!MEDIUM SCREEN!!!!!!!!!!! */
 
 @media only screen and (min-width: 37em) {
-  body{
+  body {
     background-image: url("../images/site/checkerboard.jpg");
-    background-size:50%;
+    background-size: 50%;
     background-repeat: repeat;
-    display:flex;
-  }
-  #wrapper {
-      width: 80%;
-      background-color: #ffffff;
-      border: #4c96d7 solid 10px;
-      border-radius: 10px;
-      margin: 0 auto;
-      margin-top: 20px;
+    display: flex;
   }
 
-  /*Navigation Styles*/
+  #wrapper {
+    width: 80%;
+    background-color: #ffffff;
+    border: #4c96d7 solid 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  /* Navigation Styles */
   nav li a {
     padding: 14px 16px;
   }
-  
+
   /* Code for main */
-  
+
   h1 {
     font-size: 1em;
   }
@@ -555,13 +548,13 @@ div.namePrice {
   .itemDetails {
     float: left;
   }
-  
+
   .container img {
     width: 100%;
     float: right;
   }
 
-  .container .itemDetails{
+  .container .itemDetails {
     margin-top: 20px;
     position: absolute;
     background-color: rgba(237, 238, 237, 0.7);
@@ -570,7 +563,7 @@ div.namePrice {
     right: 0;
     height: 240px;
     width: 240px;
-    z-index: 0; 
+    z-index: 0;
   }
 
   .container h2 {
@@ -578,14 +571,14 @@ div.namePrice {
     position: absolute;
     top: 15px;
     left: 10px;
-}
+  }
 
-.container p {
+  .container p {
     position: absolute;
     top: 50px;
     left: 10px;
-}
-  
+  }
+
   .button {
     position: absolute;
     top: 165px;
@@ -598,7 +591,7 @@ div.namePrice {
     text-decoration: none;
   }
 
-  .reviews h2{
+  .reviews h2 {
     font-size: 1em;
   }
 
@@ -609,139 +602,140 @@ div.namePrice {
   /* Code for the footer */
 
   footer {
-      font-size: 0.6em;
+    font-size: 0.6em;
   }
 
-/*  ***********CLASSIFICATION PAGE*********** */
-#inv-display {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.card {
-  width: 45%; 
-  height: 300px; 
-  margin: 1%;
-  box-sizing: border-box; 
-  display: flex;
-  flex-direction: column;
-}
-.card img {
-  width: 100%;
-  height: 100%; 
-  object-fit: cover; 
-}
-
-.card .namePrice {
-  flex-grow: 1; /* Allow this div to grow and take up remaining space */
-  display: flex;
-  flex-direction: column;
-}
-
-.card .namePrice hr {
-  margin-top: auto; /* Push the hr to the bottom of the flex container */
-}
-
-/* ************INDIVIDUAL ITEM PAGE********** */
-
-/* ***********LOGIN PAGE*********** */
-.login-wrapper1{
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.login-p {
-  width:33%;
-  padding-left: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ***********LOGIN PAGE*********** */
-.registration-wrapper1{
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.registration-p {
-  width:33%;
-  padding-left: 10px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-
-/* !!!!!!!!!LARGE SCREEN!!!!!!!!!!!*/
-@media only screen and (min-width: 37em) {
-  #item-display {
+  /* **CLASSIFICATION PAGE** */
+  #inv-display {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  
-  .img-details {
-    width: 48%; /* Adjust the width as needed */
+
+  .card {
+    width: 45%;
+    height: 300px;
+    margin: 1%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
-  
-  .img-details img {
+
+  .card img {
     width: 100%;
-    max-width: 100%; /* Ensure the image takes up the full width of its container */
-    height: auto; /* Maintain the aspect ratio of the image */
-    border-radius: 8px; /* Optional: Add border-radius to the image */
+    height: 100%;
+    object-fit: cover;
   }
-  
-  .details {
-    width: 48%; /* Adjust the width as needed */
-    box-sizing: border-box;
+
+  .card .namePrice {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
-  
-}
 
-/* *****64em is also 1028px when basefont is 16px***** */
+  .card .namePrice hr {
+    margin-top: auto;
+  }
 
-@media only screen and (min-width: 64rem) {
-  
-  .wrapper {
+  /* **INDIVIDUAL ITEM PAGE** */
+
+  /* **LOGIN PAGE** */
+  .login-wrapper1 {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .login-p {
+    width: 33%;
+    padding-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* **REGISTRATION PAGE** */
+  .registration-wrapper1 {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .registration-p {
+    width: 33%;
+    padding-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+
+  /* !!!!!!!!!LARGE SCREEN!!!!!!!!!!!*/
+  @media only screen and (min-width: 37em) {
+    #item-display {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .img-details {
+      width: 48%;
+      box-sizing: border-box;
+    }
+
+    .img-details img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .details {
+      width: 48%;
+      box-sizing: border-box;
+    }
+
+  }
+
+  /* !!!!!!!!!!!64em is also 1028px when basefont is 16px!!!!!!!!!! */
+
+  @media only screen and (min-width: 64rem) {
+
+    .wrapper {
       width: 80%;
-  }
+    }
 
-  nav {
+    nav {
       font-size: 1.5em;
-  }
+    }
 
-  .reviews {
-    float: right;
-    width: 50%;
-  }
-  
-  .reviews ul {
-    padding: 0 0 0 20px;
-  }
-  
-  .reviews li {
-    padding: 5px;
-    font-size: 1em;
-  }
+    .reviews {
+      float: right;
+      width: 50%;
+    }
 
-  .upgradeContainer {
-    float: left;
-    width: 50%;
-  }
+    .reviews ul {
+      padding: 0 0 0 20px;
+    }
 
-  footer {
+    .reviews li {
+      padding: 5px;
+      font-size: 1em;
+    }
+
+    .upgradeContainer {
+      float: left;
+      width: 50%;
+    }
+
+    footer {
       font-size: 0.8em;
+    }
+
+    /* **CLASSIFICATION PAGE** */
+    .card {
+      height: 350px;
+      width: 25%;
+    }
+
   }
-
-  /*  ***********CLASSIFICATION PAGE*********** */
-.card {
-  height: 350px; 
-  width: 25%; 
-}
-
-}
 
 }
