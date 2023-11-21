@@ -46,6 +46,6 @@ if (process.env.NODE_ENV == "development") {
     connectionString: process.env.DATABASE_URL,
   });
 
-  // Export the connection pool for non-development environments 
+  // Export the connection pool for non-development environments
   module.exports = pool;
 }

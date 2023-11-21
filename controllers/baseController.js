@@ -5,11 +5,11 @@ const utilities = require("../utilities/");
 const baseController = {};
 
 // Define a method to build the home page
-baseController.buildHome = async function(req, res) {
+baseController.buildHome = async function (req, res) {
   try {
     // Retrieve navigation information using the imported utility function
     const nav = await utilities.getNav();
-    
+
     // Add a test flash message to req
     // req.flash('notice', 'This is a flash message.');
 

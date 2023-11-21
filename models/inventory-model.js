@@ -8,43 +8,45 @@ const pool = require("../database/");
 // Define an asynchronous function to fetch all classification data from the database
 async function getClassifications() {
   // Execute a SQL query to select all classifications from the "public.classification" table, ordered by classification name
-  return await pool.query("SELECT * FROM public.classification ORDER BY classification_name");
+  return await pool.query(
+    "SELECT * FROM public.classification ORDER BY classification_name"
+  );
 }
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
-    try {
-      const data = await pool.query(
-        `SELECT * FROM public.inventory AS i 
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory AS i 
         JOIN public.classification AS c 
         ON i.classification_id = c.classification_id 
         WHERE i.classification_id = $1`,
-        [classification_id]
-      )
-      return data.rows
-    } catch (error) {
-      console.error("getclassificationsbyid error " + error)
-    }
+      [classification_id]
+    );
+    return data.rows;
+  } catch (error) {
+    console.error("getclassificationsbyid error " + error);
   }
+}
 
-  /* ***************************
+/* ***************************
  *  Get inventory item details by inv_id
  * ************************** */
 async function getInventoryItemDetailsById(inv_id) {
   try {
-      const data = await pool.query(
-          `SELECT * FROM public.inventory AS i 
+    const data = await pool.query(
+      `SELECT * FROM public.inventory AS i 
           JOIN public.classification AS c 
           ON i.classification_id = c.classification_id 
           WHERE i.inv_id = $1`,
-          [inv_id]
-      );
-      return data.rows[0];
+      [inv_id]
+    );
+    return data.rows[0];
   } catch (error) {
-      console.error("getInventoryItemDetailsById error " + error);
-      throw error; // rethrow the error to handle it in the controller
+    console.error("getInventoryItemDetailsById error " + error);
+    throw error; // rethrow the error to handle it in the controller
   }
 }
 
@@ -52,6 +54,5 @@ async function getInventoryItemDetailsById(inv_id) {
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
-  getInventoryItemDetailsById, 
+  getInventoryItemDetailsById,
 };
-

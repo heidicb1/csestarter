@@ -1,12 +1,12 @@
 /* ******************************************
- * This server.js file is the primary file of the 
+ * This server.js file is the primary file of the
  * application. It is used to control the project.
  *******************************************/
 
 /* ***********************
  * Require Statements
  *************************/
-const session = require('express-session');
+const session = require("express-session");
 const pool = require("./database/"); // Make sure to replace this with your actual database connection
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
@@ -16,60 +16,60 @@ const static = require("./routes/static");
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities");
-const errorRoute = require('./routes/errorRoute');
-
-
+const errorRoute = require("./routes/errorRoute");
 
 /* ***********************
  * Middleware
  * ************************/
 // Session middleware using connect-pg-simple to store sessions in PostgreSQL
-app.use(session({
-  // Configure the session store using connect-pg-simple
-  store: new (require('connect-pg-simple')(session))({
-    createTableIfMissing: true, // Create the session table if it's missing
-    pool, // Use the existing database connection pool
-  }),
-  secret: process.env.SESSION_SECRET, // Secret key for session data encryption
-  resave: true, // Forces the session to be saved back to the session store
-  saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
-  name: 'sessionId', // Name of the cookie to store the session ID
-}))
+app.use(
+  session({
+    // Configure the session store using connect-pg-simple
+    store: new (require("connect-pg-simple")(session))({
+      createTableIfMissing: true, // Create the session table if it's missing
+      pool, // Use the existing database connection pool
+    }),
+    secret: process.env.SESSION_SECRET, // Secret key for session data encryption
+    resave: true, // Forces the session to be saved back to the session store
+    saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
+    name: "sessionId", // Name of the cookie to store the session ID
+  })
+);
 
 // Express Messages Middleware
-app.use(require('connect-flash')());
+app.use(require("connect-flash")());
 
 // Custom middleware to make flash messages available in templates
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   // Make flash messages available in locals for the views
-  res.locals.messages = require('express-messages')(req, res);
+  res.locals.messages = require("express-messages")(req, res);
   next();
 });
-
-
 
 /* ***********************
  * Middleware
  ************************/
-app.use(session({
-  store: new (require('connect-pg-simple')(session))({
-    createTableIfMissing: true,
-    pool,
-  }),
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  name: 'sessionId',
-}))
+app.use(
+  session({
+    store: new (require("connect-pg-simple")(session))({
+      createTableIfMissing: true,
+      pool,
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    name: "sessionId",
+  })
+);
 
 // Express Messages Middleware
-app.use(require('connect-flash')())
+app.use(require("connect-flash")());
 // Custom Middleware to Make Flash Messages Available in Templates
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   // Make flash messages available in templates
-  res.locals.messages = require('express-messages')(req, res)
-  next()
-})
+  res.locals.messages = require("express-messages")(req, res);
+  next();
+});
 
 /* ***********************
  * View Engine and Templates
@@ -94,17 +94,17 @@ app.use("/inv", require("./routes/inventoryRoute"));
 app.use("/account", require("./routes/accountRoute"));
 
 // Error route
-app.use('/error', errorRoute);
+app.use("/error", errorRoute);
 
 // File Not Found Route - must be the last route in the list
 app.use(async (req, res, next) => {
-  next({ status: 404, message: 'Sorry, we appear to have lost that page.' });
+  next({ status: 404, message: "Sorry, we appear to have lost that page." });
 });
 
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+ * Express Error Handler
+ * Place after all other middleware
+ *************************/
 // Error-handling middleware using async function
 app.use(async (err, req, res, next) => {
   // Retrieve navigation data using utility function
@@ -115,12 +115,12 @@ app.use(async (err, req, res, next) => {
   if (err.status == 500) {
     message = err.message;
   } else {
-    message = 'Oh no! There was a crash. Maybe try a different route?';
+    message = "Oh no! There was a crash. Maybe try a different route?";
   }
 
   // Render the error page with relevant details
   res.render("errors/error", {
-    title: err.status || 'Server Error', // Set the title to the error status or default to 'Server Error'
+    title: err.status || "Server Error", // Set the title to the error status or default to 'Server Error'
     message, // Pass the error message to the view
     nav, // Pass navigation data to the view
   });

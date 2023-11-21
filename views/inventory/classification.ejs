@@ -2,19 +2,17 @@
  *  The Content Heading
  * ************************** -->
 <% if (title) { %>
-    <!-- If a title is provided, display an h1 heading with the title -->
-    <h1 class="classificationTitle"><%= title %></h1>
-  <% } else {
-    // If no title is provided, redirect to the home page
-    res.redirect('/');
-  } %>
+<!-- If a title is provided, display an h1 heading with the title -->
+<h1 class="classificationTitle"><%= title %></h1>
+<% } else { // If no title is provided, redirect to the home page
+res.redirect('/'); } %>
 
-  <!-- ***************************
+<!-- ***************************
  *  A Message Block
  * ************************** -->
- <%# messages() %>
- 
-   <!-- ***************************
+<% messages() %>
+
+<!-- ***************************
  *  Inventory Item Display
  * ************************** -->
- <%- grid %>
+<%- grid %>

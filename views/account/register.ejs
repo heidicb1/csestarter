@@ -10,19 +10,48 @@
     <form class="registration-form" action="/register" method="post">
       <!-- Add your form fields here: -->
       <label class="registration-label" for="firstName">First Name:</label>
-      <input class="registration-input" type="text" id="firstName" name="firstName" required>
+      <input
+        class="registration-input"
+        type="text"
+        id="firstName"
+        name="firstName"
+        required
+      />
 
       <label class="registration-label" for="lastName">Last Name:</label>
-      <input class="registration-input" type="text" id="lastName" name="lastName" required>
+      <input
+        class="registration-input"
+        type="text"
+        id="lastName"
+        name="lastName"
+        required
+      />
 
       <label class="registration-label" for="email">Email:</label>
-      <input class="registration-input" type="email" id="email" name="email" required>
+      <input
+        class="registration-input"
+        type="email"
+        id="email"
+        name="email"
+        required
+      />
 
       <label class="registration-label" for="password">Password:</label>
-      <input class="registration-input" type="password" id="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,}" title="Password must be 12 characters or longer and contain at least one digit, one uppercase letter, one lowercase letter, and one special character">
+      <input
+        class="registration-input"
+        type="password"
+        id="password"
+        name="password"
+        required
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,}"
+        title="Password must be 12 characters or longer and contain at least one digit, one uppercase letter, one lowercase letter, and one special character"
+      />
 
       <!-- Password requirements message -->
-      <p id="passwordRequirements" class="password-requirements">Password must be at least 12 characters and include 1 uppercase letter, 1 number, and 1 special character.</p>
+      <p id="passwordRequirements" class="password-requirements">
+        Password must be at least 12 characters and include 1 uppercase letter,
+        1 number, and 1 special character.
+      </p>
 
       <!-- Toggle password button -->
       <button type="button" id="togglePassword">Show Password</button>
@@ -33,18 +62,23 @@
 </div>
 
 <!-- Link for Login -->
-<p class="registration-p">Already have an account? <a class="registration-a" href="/login">Login here</a></p>
+<p class="registration-p">
+  Already have an account?
+  <a class="registration-a" href="/login">Login here</a>
+</p>
 
 <!-- Password toggle functionality -->
 <script>
-    const togglePasswordButton = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-  
-    togglePasswordButton.addEventListener('click', () => {
-      // Toggle password visibility
-      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-  
-      // Change button label based on the current state
-      togglePasswordButton.textContent = passwordInput.type === 'password' ? 'Show Password' : 'Hide Password';
-    });
-  </script>
+  const togglePasswordButton = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+
+  togglePasswordButton.addEventListener("click", () => {
+    // Toggle password visibility
+    passwordInput.type =
+      passwordInput.type === "password" ? "text" : "password";
+
+    // Change button label based on the current state
+    togglePasswordButton.textContent =
+      passwordInput.type === "password" ? "Show Password" : "Hide Password";
+  });
+</script>
