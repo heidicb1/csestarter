@@ -330,12 +330,44 @@ div.namePrice {
   text-decoration: underline;
 }
 
-a:hover {
-  background-color: #252339;
-  color: #4c96d7;
+.login-a {
+  background-image: linear-gradient(
+    to right,
+    #4c96d7,
+    #4c96d7 50%,
+    #252339 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
 }
 
-/* **********Tablet Size viewports********* */
+.login-a:before {
+  content: '';
+  background: #4c96d7;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-a:hover {
+ background-position: 0;
+}
+
+.login-a:hover::before {
+  width:100%;
+}
+
+/* !!!!!!!!!MEDIUM SCREEN!!!!!!!!!!!*/
 
 @media only screen and (min-width: 37em) {
   body{
@@ -462,6 +494,21 @@ a:hover {
 }
 
 /* ************INDIVIDUAL ITEM PAGE********** */
+
+/* ***********LOGIN PAGE*********** */
+.login-wrapper1{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-p {
+  width:33%;
+  padding-left: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* !!!!!!!!!LARGE SCREEN!!!!!!!!!!!*/
 @media only screen and (min-width: 37em) {
   #item-display {
     display: flex;
