@@ -255,6 +255,7 @@ li.card {
 /* Style for spacing of price and name */
 div.namePrice {
   margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
 /* **INDIVIDUAL ITEM PAGE** */
@@ -270,7 +271,7 @@ div.namePrice {
 }
 
 /* **LOGIN PAGE** */
-.login-wrapper1 {
+.login-wrapper {
   background-color: #cccccc;
   padding: 3px;
   border-width: 10px;
@@ -282,7 +283,6 @@ div.namePrice {
   background-color: #4c96d7;
   padding: 20px;
   border-width: 10px;
-
   box-shadow: 0 0 10px #252339;
   margin: 5px;
 }
@@ -372,7 +372,7 @@ div.namePrice {
 }
 
 /* **REGISTRATION PAGE** */
-.registration-wrapper1 {
+.registration-wrapper {
   background-color: #cccccc;
   padding: 3px;
   border-width: 10px;
@@ -534,9 +534,20 @@ div.namePrice {
   }
 
   /* Code for main */
+  .siteName {
+    padding:10px;
+    font-size: 1.5em;
+  }
+
+  #tools {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right:5px;
+    font-size: .9em;
+  }
 
   h1 {
-    font-size: 1em;
+    font-size: 1.25em;
   }
 
   .container {
@@ -631,6 +642,7 @@ div.namePrice {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
   }
 
   .card .namePrice hr {
@@ -640,7 +652,7 @@ div.namePrice {
   /* **INDIVIDUAL ITEM PAGE** */
 
   /* **LOGIN PAGE** */
-  .login-wrapper1 {
+  .login-wrapper {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -654,7 +666,7 @@ div.namePrice {
   }
 
   /* **REGISTRATION PAGE** */
-  .registration-wrapper1 {
+  .registration-wrapper {
     width: 50%;
     margin-left: auto;
     margin-right: auto;

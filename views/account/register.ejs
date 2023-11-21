@@ -5,9 +5,8 @@
 <%- messages() %>
 
 <!-- Registration Form -->
-<div class="registration-wrapper1">
-  <div class="registration-wrapper2">
-    <form class="registration-form" action="/register" method="post">
+<div class="registration-wrapper">
+    <form class="registration-form" action="/account/register" method="post">
       <!-- Add your form fields here: -->
       <label class="registration-label" for="firstName">First Name:</label>
       <input
@@ -43,13 +42,13 @@
         id="password"
         name="password"
         required
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,}"
-        title="Password must be 12 characters or longer and contain at least one digit, one uppercase letter, one lowercase letter, and one special character"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
+        title="Password must be 8 characters or longer and contain at least one digit, one uppercase letter, one lowercase letter, and one special character"
       />
 
       <!-- Password requirements message -->
       <p id="passwordRequirements" class="password-requirements">
-        Password must be at least 12 characters and include 1 uppercase letter,
+        Password must be at least 8 characters and include 1 uppercase letter,
         1 number, and 1 special character.
       </p>
 
@@ -59,12 +58,12 @@
       <button class="registrationbtn" type="submit">Register</button>
     </form>
   </div>
-</div>
+
 
 <!-- Link for Login -->
 <p class="registration-p">
   Already have an account?
-  <a class="registration-a" href="/login">Login here</a>
+  <a class="registration-a" href="/account/login">Login here</a>
 </p>
 
 <!-- Password toggle functionality -->
