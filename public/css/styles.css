@@ -509,6 +509,12 @@ div.namePrice {
   color: #252339;
 }
 
+/*  **REGISTRATION PROCESSED** */
+.reg-processed {
+  color: #252339;
+  font-weight: bold;
+}
+
 /* !!!!!!!!!MEDIUM SCREEN!!!!!!!!!!! */
 
 @media only screen and (min-width: 37em) {
@@ -679,7 +685,16 @@ div.namePrice {
     margin-right: auto;
   }
 
+  /*  **REGISTRATION PROCESSED** */
+.reg-processed {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.reg-processed li {
+  list-style-type: none;
+}
 
   /* !!!!!!!!!LARGE SCREEN!!!!!!!!!!!*/
   @media only screen and (min-width: 37em) {
