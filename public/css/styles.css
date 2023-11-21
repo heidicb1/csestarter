@@ -409,6 +409,14 @@ div.namePrice {
   border-radius: 5px;
 }
 
+.registration-input:valid {
+  border-width: 5px;
+  border-color: #2ecc71; 
+}
+.registration-input:focus:invalid {
+  border-width: 5px;
+  border-color: #f26454; 
+}
 .registrationbtn {
   cursor: pointer;
   font-size: 0.75em;
