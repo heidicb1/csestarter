@@ -16,5 +16,11 @@ const utilities = require("../utilities")
  */
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
+/* 
+ * Login view error handling middleware, controller-based request
+ * Route to build login view
+ */
+router.get("/register", utilities.handleErrors(accountController.buildRegister))
+
 // Export the router to make it accessible in other modules
 module.exports = router;
