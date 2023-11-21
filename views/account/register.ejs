@@ -21,8 +21,11 @@
       <label class="registration-label" for="password">Password:</label>
       <input class="registration-input" type="password" id="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{12,}" title="Password must be 12 characters or longer and contain at least one digit, one uppercase letter, one lowercase letter, and one special character">
 
-      <!-- Optional button to toggle password visibility -->
-      <button type="button" id="togglePassword">Toggle Password</button>
+      <!-- Password requirements message -->
+      <p id="passwordRequirements" class="password-requirements">Password must be at least 12 characters and include 1 uppercase letter, 1 number, and 1 special character.</p>
+
+      <!-- Toggle password button -->
+      <button type="button" id="togglePassword">Show Password</button>
 
       <button class="registrationbtn" type="submit">Register</button>
     </form>
@@ -34,10 +37,14 @@
 
 <!-- Password toggle functionality -->
 <script>
-  const togglePasswordButton = document.getElementById('togglePassword');
-  const passwordInput = document.getElementById('password');
-
-  togglePasswordButton.addEventListener('click', () => {
-    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-  });
-</script>
+    const togglePasswordButton = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+  
+    togglePasswordButton.addEventListener('click', () => {
+      // Toggle password visibility
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+  
+      // Change button label based on the current state
+      togglePasswordButton.textContent = passwordInput.type === 'password' ? 'Show Password' : 'Hide Password';
+    });
+  </script>
