@@ -17,6 +17,7 @@ const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities");
 const errorRoute = require("./routes/errorRoute");
+const bodyParser = require("body-parser");
 
 /* ***********************
  * Middleware
@@ -46,30 +47,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-/* ***********************
- * Middleware
- ************************/
-app.use(
-  session({
-    store: new (require("connect-pg-simple")(session))({
-      createTableIfMissing: true,
-      pool,
-    }),
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    name: "sessionId",
-  })
-);
-
-// Express Messages Middleware
-app.use(require("connect-flash")());
-// Custom Middleware to Make Flash Messages Available in Templates
-app.use(function (req, res, next) {
-  // Make flash messages available in templates
-  res.locals.messages = require("express-messages")(req, res);
-  next();
-});
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * View Engine and Templates
