@@ -196,6 +196,10 @@ footer {
 }
 
 footer p {
+  margin: 0;
+}
+
+footer a{
   margin-top: 0;
 }
 
@@ -636,12 +640,6 @@ div.namePrice {
   font-size: 1em;
 }
 
-  /* Code for the footer */
-
-  footer {
-    font-size: 0.6em;
-  }
-
   /* **CLASSIFICATION PAGE** */
   #inv-display {
     display: flex;
@@ -774,7 +772,7 @@ div.namePrice {
     }
 
     footer {
-      font-size: 0.8em;
+      font-size: 0.6em;
     }
 
     /* **CLASSIFICATION PAGE** */
