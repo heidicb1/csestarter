@@ -68,5 +68,31 @@ validate.checkRegData = async (req, res, next) => {
     }
     next()
   }
+
+  /*  **********************************
+ *  ?????Login Data Validation Rules -- IS THIS WORKING???
+ * ********************************* */
+validate.loginRules = () => {
+  return [
+      // vaild email is required 
+      body("account_email")
+          .trim()
+          .isEmail()
+          .normalizeEmail()
+          .withMessage("A valid email is required.")
+          .custom(async (account_email) => {
+              const user = await accountModel.getUserByEmail(account_email);
+              if (!user) {
+                  throw new Error("Email not found.");
+              }
+          }),
+
+      // password is required
+      body("account_password")
+          .trim()
+          .notEmpty()
+          .withMessage("Password is required."),
+  ];
+};
   
   module.exports = validate

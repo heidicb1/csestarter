@@ -311,6 +311,15 @@ div.namePrice {
   border-radius: 5px;
 }
 
+.login-input:valid {
+  border-width: 5px;
+  border-color: #2ecc71; 
+}
+.login-input:focus:invalid {
+  border-width: 5px;
+  border-color: #f26454; 
+}
+
 .loginbtn {
   cursor: pointer;
   font-size: .75em;
