@@ -97,7 +97,7 @@ app.use(async (err, req, res, next) => {
   // Retrieve navigation data using utility function
   let nav = await utilities.getNav();
 
-  let systemErrorMessage = "Oops! Our server is on strike, demanding better working conditions. We're negotiating with its union of ones and zeros. In the meantime, grab a cup of coffee, contemplate the meaning of life, and check back in a few minutes. Our servers promise to return to their duties shortly! ☕🤖"
+  let systemErrorMessage = "Oops! Our server is on strike, demanding better working conditions. We're negotiating with its union of ones and zeros. In the meantime, grab a cup of hot chocolate, contemplate the meaning of life, and check back in a few minutes. Our servers promise to return to their duties shortly! ☕🤖"
 
   // Log the error details, including the URL where the error occurred
   console.error(`Error at: "${req.originalUrl}": ${err.message}`);
