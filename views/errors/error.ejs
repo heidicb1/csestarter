@@ -4,9 +4,7 @@
 <% if (title) { %>
 <!-- If a title is provided, display an h1 heading with the title -->
 <h1><%= title %></h1>
-<div class="errorMessage">
-<h2><%- message %></h2>
-</div>
+<h2 class="errorMessage"><%- message %></h2>
 <% } else { // If no title is provided, redirect to the home page
 res.redirect('/'); } %>
 

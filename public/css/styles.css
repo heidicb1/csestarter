@@ -181,6 +181,12 @@ h1 {
   font-size: .75em;
 }
 
+/* Error Message */
+.errorMessage{
+  color:#252339;
+  font-size: .75em;
+}
+
 /* Code for the footer */
 footer {
   text-align: left;
@@ -623,6 +629,12 @@ div.namePrice {
   .upgradeContainer h2 {
     font-size: 1em;
   }
+
+  /* Error Message */
+.errorMessage{
+  color:#252339;
+  font-size: 1em;
+}
 
   /* Code for the footer */
 
