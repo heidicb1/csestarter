@@ -75,9 +75,17 @@ app.use("/account", require("./routes/accountRoute"));
 // Error route
 app.use("/error", errorRoute);
 
+//broken route 
+app.get('/broken', (req, res, next) => { 
+  // Create an error object 
+  const err = new Error('This is a simulated error'); 
+  // Pass the error to the next middleware 
+  next(err); }); 
+  
+
 // File Not Found Route - must be the last route in the list
 app.use(async (req, res, next) => {
-  next({ status: 404, message: "Sorry, we appear to have lost that page." });
+  next({ status: 404, message: "Uh-oh! Gremlins have invaded our code. We've dispatched our team of tech wizards to shoo them away. In the meantime, try refreshing the page or doing a little dance. If that doesn't work, blame it on the office ghost. 👻✨" });
 });
 
 /* ***********************
@@ -89,14 +97,20 @@ app.use(async (err, req, res, next) => {
   // Retrieve navigation data using utility function
   let nav = await utilities.getNav();
 
+  let systemErrorMessage = "Oops! Our server is on strike, demanding better working conditions. We're negotiating with its union of ones and zeros. In the meantime, grab a cup of coffee, contemplate the meaning of life, and check back in a few minutes. Our servers promise to return to their duties shortly! ☕🤖"
+
   // Log the error details, including the URL where the error occurred
   console.error(`Error at: "${req.originalUrl}": ${err.message}`);
   if (err.status == 500) {
     message = err.message;
+  } else if (err.status == 404) {
+    message = err.message;
   } else {
-    message = "Oh no! There was a crash. Maybe try a different route?";
+    message = systemErrorMessage;
   }
-
+  
+  
+    
   // Render the error page with relevant details
   res.render("errors/error", {
     title: err.status || "Server Error", // Set the title to the error status or default to 'Server Error'

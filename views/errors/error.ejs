@@ -4,16 +4,10 @@
 <% if (title) { %>
 <!-- If a title is provided, display an h1 heading with the title -->
 <h1><%= title %></h1>
+<div class="errorMessage">
+<h2><%- message %></h2>
+</div>
 <% } else { // If no title is provided, redirect to the home page
 res.redirect('/'); } %>
 
-<!-- ***************************
-   *  Display the Error Message
-   * ************************** -->
-<% if (message) { %>
-<!-- If a message is provided, display it -->
-<p><%= message %></p>
-<% } else { %>
-<!-- If no message is provided, display a generic message -->
-<p>Sorry, we appear to have lost that page.</p>
-<% } %>
+
