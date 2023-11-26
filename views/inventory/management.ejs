@@ -1,0 +1,23 @@
+<!-- ***************************
+ *  The Content Heading
+ * ************************** -->
+<% if (title) { %>
+<!-- If a title is provided, display an h1 heading with the title -->
+<h1><%= title %></h1>
+<% } else { // If no title is provided, redirect to the home page
+res.redirect('/'); } %>
+
+<!-- ***************************
+    *  A Message Block
+    * ************************** -->
+<% messages() %>
+
+<!-- ***************************
+*  Links
+* ************************** -->
+<div>
+  <ul>
+    <li><a href="/inv/newClassification">Add New Classification</a></li>
+    <li><a href="/inv/newInventory">Add New Inventory</a></li>
+  </ul>
+</div>

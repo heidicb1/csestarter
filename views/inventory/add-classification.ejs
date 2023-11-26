@@ -1,0 +1,25 @@
+<!-- ***************************
+ *  The Content Heading
+ * ************************** -->
+ <% if (title) { %>
+    <!-- If a title is provided, display an h1 heading with the title -->
+    <h1 class="managementTitle"><%= title %></h1>
+    <% } else { // If no title is provided, redirect to the home page
+    res.redirect('/'); } %>
+    
+    <!-- ***************************
+     *  A Message Block
+     * ************************** -->
+    <% messages() %>
+    
+    <h1>Add New Classification</h1>
+
+<form action="/vehicles/index" method="POST">
+    <label>Classification Name</label>
+    <br>
+    <input type="text" name="newClassification" id="newClassification" required>
+    <br>
+    <input type="submit" name="submit" id="regbtn" value="Register">
+    <!-- ADD NEEDED INFO -->
+    <input type="hidden" name="action" value="addClass">
+</form>

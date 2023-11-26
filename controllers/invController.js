@@ -103,5 +103,72 @@ invCont.showItemDetail = async function (req, res) {
   }
 };
 
+// ... (existing code)
+
+/* ***************************
+ *  Build mamangement view
+ * ************************** */
+invCont.buildManagementView = async function (req, res) {
+  try {
+    // Retrieve navigation data using utility function
+    let nav = await utilities.getNav();
+
+    res.render("./inventory/management", {
+      title: "Inventory Management",
+      nav
+    });
+  } catch (error) {
+    console.error("Error in buildManagementView:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+/* ***************************
+ *  Build New Classification
+ * ************************** */
+invCont.buildNewClassification = async function (req, res, next) {
+  try {
+    // Retrieve navigation data using utility function
+    let nav = await utilities.getNav();
+
+    // Render the inventory item detail view with the title, navigation, and grid data
+    res.render("./inventory/add-classification", {
+      title: "New Classification",
+      nav
+    });
+  } catch (error) {
+    console.error("Error in buildNewClassification:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+/* ***************************
+ *  Process New Classification
+ * ************************** */
+
+/* ***************************
+ *  Build New Inventory
+ * ************************** */
+invCont.buildNewInventory = async function (req, res, next) {
+  try {
+    // Retrieve navigation data using utility function
+    let nav = await utilities.getNav();
+    
+    // Render the inventory item detail view with the title, navigation, and grid data
+    res.render("./inventory/add-inventory", {
+      title: "New Inventory",
+      nav
+    });
+  } catch (error) {
+    console.error("Error in buildNewInventory:", error);
+    res.status(500).send("Internal Server Error");
+  };
+}
+
+/* ***************************
+ *  Process New Inventory
+ * ************************** */
+
 // Export the invCont object to make the controller functions accessible in other modules
 module.exports = invCont;
+
