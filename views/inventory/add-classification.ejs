@@ -11,6 +11,12 @@
      *  A Message Block
      * ************************** -->
     <% messages() %>
+
+    <!-- ***************************
+     *  Error Message Block To Be Added RIGHT NOW PAGE WONT WORK WITH IT
+     * ************************** -->
+     
+
 <p>Field is required</p>
 <!-- DO NOT CHANGE THE ACTION IT IS FINALLY WORKING -->
 <form action="/inv/addClassification" method="post"> 
@@ -22,7 +28,8 @@
     id="classification_name" 
     pattern="[a-zA-Z]+" 
     title="Please enter only alphabetic characters."
+    placeholder="Must be alaphbetic characters only"
     required>
     <br>
-    <button class="registrationbtn" type="submit">Register</button>
+    <button class="classifcationbtn" type="submit">Add New Classification</button>
 </form>
