@@ -17,12 +17,10 @@ router.get("/detail/:invId", invController.showItemDetail);
 // Add Vehicle Managment Route
 router.get("/", invController.buildManagementView); 
 
-// Add New Classificaiton Page
-router.get("/addClassification", invController.buildaddClassification); 
+// Deliver New Classification View THIS IS GOOD
+router.get("/addClassification", utilities.handleErrors(invController.buildaddClassification)); 
 
 //Post New Classification
-// Post New Classification
-// Post New Classification
 router.post('/addClassification', utilities.handleErrors(invController.processNewClassification));
 
 // Add New Car
