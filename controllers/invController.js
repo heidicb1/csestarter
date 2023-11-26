@@ -130,7 +130,7 @@ invCont.buildaddClassification = async function (req, res, next) {
   res.render("./inventory/add-classification", {
     title: "Add New Classification",
     nav,
-    error: null,
+    errors: null,
   })
 }
 
@@ -153,12 +153,14 @@ invCont.buildaddClassification = async function (req, res, next) {
     res.status(201).render("./inventory/management", {
       title: "Vehicle Management",
       nav,
+      errors: null,
     })
   } else {
     req.flash("notice", "Sorry, adding the classification failed.")
     res.status(501).render("./inventory/add-classification", {
       title: "Add New Classification",
       nav,
+      errors: null,
     })
   }
 }

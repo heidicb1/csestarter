@@ -15,7 +15,13 @@
     <!-- ***************************
      *  Error Message Block To Be Added RIGHT NOW PAGE WONT WORK WITH IT
      * ************************** -->
-     
+     <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
 
 <p>Field is required</p>
 <!-- DO NOT CHANGE THE ACTION IT IS FINALLY WORKING -->
