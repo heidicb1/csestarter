@@ -7,6 +7,7 @@ const router = new express.Router();
 // Import the inventory controller module
 const invController = require("../controllers/invController");
 
+const utilities = require("../utilities");
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
@@ -17,9 +18,12 @@ router.get("/detail/:invId", invController.showItemDetail);
 router.get("/", invController.buildManagementView); 
 
 // Add New Classificaiton Page
-router.get("/newClassification", invController.buildNewClassification); 
+router.get("/addClassification", invController.buildaddClassification); 
 
 //Post New Classification
+// Post New Classification
+// Post New Classification
+router.post('/addClassification', utilities.handleErrors(invController.processNewClassification));
 
 // Add New Car
 router.get("/newInventory", invController.buildNewInventory); 

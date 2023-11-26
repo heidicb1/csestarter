@@ -11,15 +11,17 @@
      *  A Message Block
      * ************************** -->
     <% messages() %>
-    
-    <h1>Add New Classification</h1>
-
-<form action="/vehicles/index" method="POST">
-    <label>Classification Name</label>
+<p>Field is required</p>
+<form action="/inventory/add-classification" method="POST">
+    <label for="classification_name">Classification Name</label>
+    <p>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</p>
+    <input 
+    type="text" 
+    name="classification_name" 
+    id="classification_name" 
+    pattern="[a-zA-Z]+" 
+    title="Please enter only alphabetic characters."
+    required>
     <br>
-    <input type="text" name="newClassification" id="newClassification" required>
-    <br>
-    <input type="submit" name="submit" id="regbtn" value="Register">
-    <!-- ADD NEEDED INFO -->
-    <input type="hidden" name="action" value="addClass">
+    <button class="registrationbtn" type="submit">Register</button>
 </form>

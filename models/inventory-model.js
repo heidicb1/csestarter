@@ -50,9 +50,22 @@ async function getInventoryItemDetailsById(inv_id) {
   }
 }
 
+/* *****************************
+*   Process New Classification
+* *************************** */
+async function processNewClassification(classification_name){
+  try {
+    const sql = "INSERT INTO your_classification_table_name (classification_name) VALUES ($1) RETURNING *";
+    return await pool.query(sql, [classification_name]);
+  } catch (error) {
+    return error.message;
+  }
+}
+
 // Export the function to make it accessible in other modules
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryItemDetailsById,
+  processNewClassification
 };

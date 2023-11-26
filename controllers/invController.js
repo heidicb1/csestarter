@@ -9,7 +9,7 @@
 const invModel = require("../models/inventory-model");
 
 // Import the utilities module
-const utilities = require("../utilities/");
+const utilities = require("../utilities");
 
 // Create an object to hold inventory-related controller functions
 const invCont = {};
@@ -103,7 +103,6 @@ invCont.showItemDetail = async function (req, res) {
   }
 };
 
-// ... (existing code)
 
 /* ***************************
  *  Build mamangement view
@@ -126,25 +125,50 @@ invCont.buildManagementView = async function (req, res) {
 /* ***************************
  *  Build New Classification
  * ************************** */
-invCont.buildNewClassification = async function (req, res, next) {
+invCont.buildaddClassification = async function (req, res, next) {
   try {
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
 
     // Render the inventory item detail view with the title, navigation, and grid data
     res.render("./inventory/add-classification", {
-      title: "New Classification",
+      title: "Add New Classification",
       nav
     });
   } catch (error) {
-    console.error("Error in buildNewClassification:", error);
+    console.error("Error in buildaddClassification:", error);
     res.status(500).send("Internal Server Error");
   }
 };
 
-/* ***************************
+/* ****************************************
  *  Process New Classification
- * ************************** */
+ * *************************************** */
+invCont.processNewClassification = async function (req, res) {
+  try {
+    let nav = await utilities.getNav();
+    const { classification_name } = req.body;
+
+    const classificationResult = await invModel.addClassification(classification_name);
+
+    if (classificationResult) {
+      // If there's an error, handle it
+      req.flash("error", `Failed to add classification: ${classificationResult.message}`);
+      res.status(501).render("inventory/add-classification", {
+        title: "Add New Classification",
+        nav,
+        classification_name,
+      });
+    } else {
+      // If successful, redirect or render as needed
+      req.flash("notice", `Classification '${classification_name}' added successfully!`);
+      res.redirect("/inv/newClassification");
+    }
+  } catch (error) {
+    console.error("Error in processNewClassification:", error);
+    res.status(500).send("Internal Server Error");
+  }
+}
 
 /* ***************************
  *  Build New Inventory
