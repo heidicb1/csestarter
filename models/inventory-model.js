@@ -62,10 +62,24 @@ async function processNewClassification(classification_name){
   }
 }
 
+/* **********************
+ *   Check for existing classification
+ * ********************* */
+async function checkExistingClassification(classification_name){
+  try {
+    const sql = "SELECT * FROM classification WHERE classification_name = $1"
+    const classification = await pool.query(sql, [classification_name])
+    return classification.rowCount
+  } catch (error) {
+    return error.message
+  }
+}
+
 // Export the function to make it accessible in other modules
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getInventoryItemDetailsById,
-  processNewClassification
+  processNewClassification,
+  checkExistingClassification
 };

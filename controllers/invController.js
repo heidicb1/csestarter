@@ -1,18 +1,7 @@
-// Comments:
-// - This controller function is responsible for handling requests to build the inventory view based on classification.
-// - It extracts the classification_id from the request parameters.
-// - Retrieves inventory data for the specified classification_id using the inventory model.
-// - Uses utility functions to build a grid representation of the inventory and retrieve navigation data.
-// - Renders the inventory view with the title, navigation, and grid data.
+const invModel = require("../models/inventory-model")
+const utilities = require("../utilities/")
 
-// Import the inventory model module
-const invModel = require("../models/inventory-model");
-
-// Import the utilities module
-const utilities = require("../utilities");
-
-// Create an object to hold inventory-related controller functions
-const invCont = {};
+const invCont = {}
 
 /* ***************************
  *  Build/Deliver inventory by classification view
@@ -114,7 +103,8 @@ invCont.buildManagementView = async function (req, res) {
 
     res.render("./inventory/management", {
       title: "Inventory Management",
-      nav
+      nav,
+      errors: null,
     });
   } catch (error) {
     console.error("Error in buildManagementView:", error);
@@ -127,6 +117,7 @@ invCont.buildManagementView = async function (req, res) {
  * ************************** */
 invCont.buildaddClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
+  // View add-calssification.ejs
   res.render("./inventory/add-classification", {
     title: "Add New Classification",
     nav,
@@ -137,15 +128,15 @@ invCont.buildaddClassification = async function (req, res, next) {
 /* ****************************************
 *  Process New Classification
 * *************************************** */
- invCont.processNewClassification = async function(req, res) {
+ invCont.processNewClassification = async function(req, res, next) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
 
-  const regResult = await invModel.processNewClassification(
+  const classificationResult = await invModel.processNewClassification(
     classification_name
   )
 
-  if (regResult) {
+  if (classificationResult) {
     req.flash(
       "notice",
       `Congratulations, classification ${classification_name} was added to the database.`
