@@ -62,12 +62,6 @@ validate.vehicleRules = () => {
     .isLength({ min: 3 })
     .withMessage("Model must be longer than 3 characters"),
 
-    body("inv_year")
-    .trim()
-    .isNumeric({ no_symbols: true })
-    .withMessage("4-digit year")
-    .isLength({ min: 4, max: 4 }),
-
     body("inv_description")
     .trim()
     .isLength({ min: 10 })
@@ -87,6 +81,12 @@ validate.vehicleRules = () => {
     .trim()
     .matches(/^\d+(\.\d{1,2})?$/)
     .withMessage("Please input valid price"),
+
+    body("inv_year")
+    .trim()
+    .isNumeric({ no_symbols: true })
+    .withMessage("4-digit year")
+    .isLength({ min: 4, max: 4 }),
 
     body("inv_miles")
     .trim()

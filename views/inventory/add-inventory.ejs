@@ -46,7 +46,8 @@ required>
         id="inv_make"
         name="inv_make"
         required
-        pattern=""
+        placeholder="2 character minimum"
+        pattern=".{2,}"
         value="<%= locals.inv_make %>"
       />
 
@@ -61,17 +62,16 @@ required>
       />
 
       <label class="newVehicle-label" for="inv_description">Description:</label>
-      <textarea
-        class="newVehicle-input"
-        id="inv_description"
-        name="inv_description"
-        cols="40"
-        rows="5"
-        required
-      >
-<%= locals.inv_description %>
-  </textarea
-      >
+<textarea
+  class="newVehicle-input"
+  id="inv_description"
+  name="inv_description"
+  cols="40"
+  rows="5"
+  pattern=".{10,}"
+  placeholder="Minimum of 10 characters"
+  required
+><%= locals.inv_description || '' %></textarea>
 
       <label class="newVehicle-label" for="inv_image">Image path:</label>
       <input
