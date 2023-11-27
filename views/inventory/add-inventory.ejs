@@ -11,13 +11,15 @@ res.redirect('/'); } %>
      *  A Message Block
      * ************************** -->
 <% messages() %>
-
+<!-- ***************************
+ *  Error Message Block
+ * ************************** -->
 
   <!-- Add New Vehicle Form -->
   <div class="newVehicle-wrapper">
     <form
       class="newVehicle-form"
-      action="/inventory/add-inventory"
+      action="/inv/newInventory"
       method="post"
     >
     <!-- Dropdown for Classifications -->
