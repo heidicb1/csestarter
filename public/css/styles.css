@@ -321,6 +321,14 @@ div.namePrice {
   color: #252339;
   margin-bottom: 15px;
 }
+.classification-input:valid {
+  border-width: 5px;
+  border-color: #2ecc71; 
+}
+.classification-input:focus:invalid {
+  border-width: 5px;
+  border-color: #f26454; 
+}
 
 .classification-btn {
   cursor: pointer;
@@ -336,6 +344,19 @@ div.namePrice {
 
 .classification-btn:hover {
   background-color: #252339;
+}
+/* **MANAGEMENT VIEW** */
+.managementView ul{
+  margin:5px;
+  padding:0;
+}
+
+.managementView li{
+  list-style-type: none;
+  font-size: .85em;
+  font-weight: bold;
+  color:#252339;
+  padding: 5px;
 }
 
 /* **INDIVIDUAL ITEM PAGE** */
