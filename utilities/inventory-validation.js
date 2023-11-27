@@ -11,7 +11,6 @@ validate.classificationRules = () => {
     body("classification_name")
     .trim()
     .isLength({ min: 3 })
-    .withMessage("Name must be longer than 3 characters")
     .isAlpha()
     .withMessage("Please use only letters in the name")
     .custom(async (classification_name) => {

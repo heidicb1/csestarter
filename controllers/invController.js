@@ -97,7 +97,6 @@ invCont.showItemDetail = async function (req, res) {
  *  Build mamangement view
  * ************************** */
 invCont.buildManagementView = async function (req, res) {
-  try {
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
 
@@ -106,11 +105,7 @@ invCont.buildManagementView = async function (req, res) {
       nav,
       errors: null,
     });
-  } catch (error) {
-    console.error("Error in buildManagementView:", error);
-    res.status(500).send("Internal Server Error");
   }
-};
 
 /* ***************************
  *  Build/Deliver New Classification WORKS
@@ -144,14 +139,12 @@ invCont.buildaddClassification = async function (req, res, next) {
     res.status(201).render("./inventory/management", {
       title: "Vehicle Management",
       nav,
-      errors: null,
     })
   } else {
     req.flash("notice", "Sorry, adding the classification failed.")
     res.status(501).render("./inventory/add-classification", {
       title: "Add New Classification",
       nav,
-      errors: null,
     })
   }
 }
