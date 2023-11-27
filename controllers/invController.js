@@ -154,20 +154,16 @@ invCont.buildaddClassification = async function (req, res, next) {
  *  Build New Inventory
  * ************************** */
 invCont.buildNewInventory = async function (req, res, next) {
-  try {
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
     
     // Render the inventory item detail view with the title, navigation, and grid data
     res.render("./inventory/add-inventory", {
       title: "New Inventory",
-      nav
+      nav,
+      errors: null,
     });
-  } catch (error) {
-    console.error("Error in buildNewInventory:", error);
-    res.status(500).send("Internal Server Error");
-  };
-}
+  }
 
 /* ***************************
  *  Process New Inventory

@@ -1,15 +1,121 @@
 <!-- ***************************
  *  The Content Heading
  * ************************** -->
- <% if (title) { %>
-    <!-- If a title is provided, display an h1 heading with the title -->
-    <h1 class="managementTitle"><%= title %></h1>
-    <% } else { // If no title is provided, redirect to the home page
-    res.redirect('/'); } %>
-    
-    <!-- ***************************
+<% if (title) { %>
+<!-- If a title is provided, display an h1 heading with the title -->
+<h1 class="addInventoryTitle"><%= title %></h1>
+<% } else { // If no title is provided, redirect to the home page
+res.redirect('/'); } %>
+
+<!-- ***************************
      *  A Message Block
      * ************************** -->
-    <% messages() %>
-    <!-- add links and extras-->
-    <p>INVENTORY</p>
+<% messages() %>
+
+<!-- Add New Vehicle Form -->
+<div class="newVehicle-wrapper">
+  <form class="newVehicle-form" action="/inventory/add-inventory" method="post">
+    <!-- Add your form fields here: -->
+    <label class="newVehicle-label" for="inv_make">Make:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_make"
+      name="inv_make"
+      required
+      value="<%= locals.inv_make %>"
+    />
+
+    <label class="newVehicle-label" for="inv_model">Model:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_model"
+      name="inv_model"
+      required
+      value="<%= locals.inv_model %>"
+    />
+
+    <label class="newVehicle-label" for="inv_description">Description:</label>
+    <textarea 
+    class="newVehicle-input"
+    id="inv_description" 
+    name="inv_description" 
+    cols="40" 
+    rows="5" 
+    required><%= locals.inv_description %>
+  </textarea>
+
+    <label class="newVehicle-label" for="inv_image">Image path:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_image"
+      name="inv_image"
+      value="/images/vehicles/no-image.png"
+      pattern="^\/images\/vehicles\/[a-zA-Z0-9\-_]+\.([a-zA-Z]{3,4})$"
+      required
+    />
+
+    <label class="newVehicle-label" for="inv_thumbnail">Thumbnail path:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_thumbnail"
+      name="inv_thumbnail"
+      value="/images/vehicles/no-image-tn.png"
+      pattern="^\/images\/vehicles\/[a-zA-Z0-9\-_]+\.([a-zA-Z]{3,4})$"
+      required
+    />
+
+    <label class="newVehicle-label" for="inv_price">Price:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_price"
+      name="inv_price"
+      placeholder="Decimal or integer"
+      value="<%= locals.inv_price %>"
+      pattern="^\d+(\.\d{1,2})?$"
+      required
+    />
+
+    <label class="newVehicle-label" for="inv_year">Year:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_year"
+      name="inv_year"
+      placeholder="4-digit year"
+      value="<%= locals.inv_year %>"
+      pattern="^\d{4}$"
+      required
+    />
+
+    <label class="newVehicle-label" for="inv_miles">Miles:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_miles"
+      name="inv_miles"
+      placeholder="Digits only"
+      value="<%= locals.inv_miles %>"
+      pattern="^[0-9]+$"
+      required
+    />
+
+    <label class="newVehicle-label" for="inv_color">Color:</label>
+    <input
+      class="newVehicle-input"
+      type="text"
+      id="inv_color"
+      name="inv_color"
+      placeholder="Vehicle color"
+      value="<%= locals.inv_color %>"
+      pattern="^[A-Za-z]+$"
+      required
+    />
+
+    <button class="newVehicle-btn" type="submit">Add New Vehicle</button>
+  </form>
+</div>
