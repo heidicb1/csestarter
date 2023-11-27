@@ -38,7 +38,6 @@ required>
   <%- classificationDropDown %>
 </select>
 
-      <!-- Add your form fields here: -->
       <label class="newVehicle-label" for="inv_make">Make:</label>
       <input
         class="newVehicle-input"
@@ -48,8 +47,7 @@ required>
         required
         placeholder="2 character minimum"
         pattern=".{2,}"
-        value="<%= locals.inv_make %>"
-      />
+        value="<%= locals.inv_make %>">
 
       <label class="newVehicle-label" for="inv_model">Model:</label>
       <input
@@ -58,8 +56,7 @@ required>
         id="inv_model"
         name="inv_model"
         required
-        value="<%= locals.inv_model %>"
-      />
+        value="<%= locals.inv_model %>">
 
       <label class="newVehicle-label" for="inv_description">Description:</label>
 <textarea
@@ -68,7 +65,7 @@ required>
   name="inv_description"
   cols="40"
   rows="5"
-  pattern=".{10,}"
+  minlength=10
   placeholder="Minimum of 10 characters"
   required
 ><%= locals.inv_description || '' %></textarea>
@@ -81,12 +78,10 @@ required>
         name="inv_image"
         value="/images/vehicles/no-image.png"
         pattern="^\/images\/vehicles\/[a-zA-Z0-9\-_]+\.([a-zA-Z]{3,4})$"
-        required
-      />
+        required>
 
       <label class="newVehicle-label" for="inv_thumbnail"
-        >Thumbnail path:</label
-      >
+        >Thumbnail path:</label>
       <input
         class="newVehicle-input"
         type="text"
@@ -94,8 +89,7 @@ required>
         name="inv_thumbnail"
         value="/images/vehicles/no-image-tn.png"
         pattern="^\/images\/vehicles\/[a-zA-Z0-9\-_]+\.([a-zA-Z]{3,4})$"
-        required
-      />
+        required>
 
       <label class="newVehicle-label" for="inv_price">Price:</label>
       <input
@@ -106,8 +100,7 @@ required>
         placeholder="Decimal or integer"
         value="<%= locals.inv_price %>"
         pattern="^\d+(\.\d{1,2})?$"
-        required
-      />
+        required>
 
       <label class="newVehicle-label" for="inv_year">Year:</label>
       <input
@@ -118,8 +111,7 @@ required>
         placeholder="4-digit year"
         value="<%= locals.inv_year %>"
         pattern="^\d{4}$"
-        required
-      />
+        required>
 
       <label class="newVehicle-label" for="inv_miles">Miles:</label>
       <input
@@ -130,8 +122,7 @@ required>
         placeholder="Digits only"
         value="<%= locals.inv_miles %>"
         pattern="^[0-9]+$"
-        required
-      />
+        required>
 
       <label class="newVehicle-label" for="inv_color">Color:</label>
       <input
@@ -142,10 +133,9 @@ required>
         placeholder="Vehicle color"
         value="<%= locals.inv_color %>"
         pattern="^[A-Za-z]+$"
-        required
-      />
+        required>
 
       <button class="newVehicle-btn" type="submit">Add New Vehicle</button>
     </form>
   </div>
-</select>
+
