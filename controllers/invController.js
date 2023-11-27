@@ -96,7 +96,7 @@ invCont.showItemDetail = async function (req, res) {
 /* ***************************
  *  Build mamangement view
  * ************************** */
-invCont.buildManagementView = async function (req, res) {
+invCont.buildManagementView = async function (req, res, next) {
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
 

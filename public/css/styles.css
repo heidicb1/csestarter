@@ -268,6 +268,76 @@ div.namePrice {
   flex-shrink: 0;
 }
 
+/* **ADD CLASSIFICATION** */
+.classificationTitle {
+  font-size: 1em;
+  color: #252339;
+}
+
+.classificationFormWrapper{
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 5px;
+  background-color: #4c96d7;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.classificationFormWrapper p{
+  font-size: .6em;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.classification-form {
+  max-width: 400px;
+  margin: 5px auto;
+  padding: 20px;
+  background-color: #4c96d7;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.classification-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #252339;
+}
+
+.classification-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.classification-form p {
+  font-size: 0.6em;
+  color: #252339;
+  margin-bottom: 15px;
+}
+
+.classification-btn {
+  cursor: pointer;
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 5px 20px;
+  width: 100%;
+  margin-top: 15px;;
+  background-color: #ffffff;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.classification-btn:hover {
+  background-color: #252339;
+}
+
 /* **INDIVIDUAL ITEM PAGE** */
 
 .details h2 {
