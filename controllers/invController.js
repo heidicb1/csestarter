@@ -156,18 +156,59 @@ invCont.buildaddClassification = async function (req, res, next) {
 invCont.buildNewInventory = async function (req, res, next) {
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
-    
+    let classificationDropDown = await utilities.getClassification()
     // Render the inventory item detail view with the title, navigation, and grid data
     res.render("./inventory/add-inventory", {
       title: "New Inventory",
       nav,
+      classificationDropDown,
       errors: null,
     });
   }
 
-/* ***************************
- *  Process New Inventory
- * ************************** */
+/* ****************************************
+*  Process New Inventory
+* *************************************** */
+invCont.addInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  let classificationDropDown= await utilities.getClassification()
+  const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+
+  const regResult = await invModel.addInventory(
+    classification_id, 
+    inv_make, 
+    inv_model, 
+    inv_year, 
+    inv_description, 
+    inv_image, 
+    inv_thumbnail, 
+    inv_price, 
+    inv_miles, 
+    inv_color
+  )
+
+  if (regResult) {
+    req.flash(
+      "success",
+      "Vehicle added"
+    )
+    res.status(201).render("./inventory/management", {
+      title: "Inventory Management",
+      nav,
+      errors: null,
+      classSelect,
+    })
+  } else {
+    req.flash("error", "Vehicle addition failed")
+    res.status(501).render("./inventory/addInventory", {
+      title: "Add Vehicle",
+      nav,
+      classificationDropDown,
+      errors: null,
+    })
+  }
+}
+
 
 // Export the invCont object to make the controller functions accessible in other modules
 module.exports = invCont;

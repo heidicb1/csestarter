@@ -41,5 +41,93 @@ validate.checkClassificationData = async (req, res, next) => {
   }
   next()
 }
+
+/*  **********************************
+ *  Add New Inventory Rules
+ * ********************************* */
+validate.vehicleRules = () => {
+  return [
+    body("classification_id")
+    .isNumeric()
+    .withMessage('Please select a classification'),
+
+    body("inv_make")
+    .trim()
+    .isLength({ min: 3 })
+    .withMessage("Make must be longer than 3 characters"),
+
+    body("inv_model")
+    .trim()
+    .isLength({ min: 3 })
+    .withMessage("Model must be longer than 3 characters"),
+
+    body("inv_year")
+    .trim()
+    .isNumeric({ no_symbols: true })
+    .withMessage("4-digit year")
+    .isLength({ min: 4, max: 4 }),
+
+    body("inv_description")
+    .trim()
+    .isLength({ min: 10 })
+    .withMessage("Please provide a description"),
+
+    body("inv_image")
+    .trim()
+    .matches(/^\/images\/vehicles\/[a-zA-Z0-9\-_]+\.([a-zA-Z]{3,4})$/)
+    .withMessage("Please provide an image path ex.\/images\/vehicles\/example.png"),
+
+    body("inv_thumbnail")
+    .trim()
+    .matches(/^\/images\/vehicles\/[a-zA-Z0-9\-_]+\.([a-zA-Z]{3,4})$/)
+    .withMessage("Please provide an thumbnail image path ex.\/images\/vehicles\/example.png"),
+
+    body("inv_price")
+    .trim()
+    .matches(/^\d+(\.\d{1,2})?$/)
+    .withMessage("Please input valid price"),
+
+    body("inv_miles")
+    .trim()
+    .isNumeric({ no_symbols: true })
+    .withMessage("Please input miles without commas or decimals"),
+
+    body("inv_color")
+    .trim()
+    .isAlpha()
+    .withMessage("Please provide a valid color"),
+  ]
+}
+
+/* ******************************
+ * New Inventory Validation
+ * ***************************** */
+validate.checkInventoryData = async (req, res, next) => {
+  const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    let classificationDropDown = await utilities.getClassification(classification_id)
+    res.render("./inventory/addInventory", {
+      errors: null,
+      title: "Add Vehicle",
+      nav,
+      classificationDropDown,
+      inv_make, 
+      inv_model, 
+      inv_year, 
+      inv_description, 
+      inv_image, 
+      inv_thumbnail, 
+      inv_price, 
+      inv_miles, 
+      inv_color
+    })
+    return
+  }
+  next()
+}
+
   
   module.exports = validate

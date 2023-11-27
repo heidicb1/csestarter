@@ -369,6 +369,7 @@ div.namePrice {
 }
 
 .newVehicle-input {
+  font-family: "Helvetica Neue", Arial, sans-serif;
   padding: 10px;
   margin-bottom: 16px;
   border: 1px solid #ccc;

@@ -116,6 +116,21 @@ Util.buildItemGrid = function(itemDetails) {
   return grid;
 };
 
+/* ************************
+ * Build classification dropdown
+ ************************** */
+Util.getClassification = async function (selectedOption) {
+  let data = await invModel.getClassifications()
+  let options = `<option value="">Choose a classification</option>`
+  data.rows.forEach((row => {
+    options += 
+      `<option value="${row.classification_id}"
+      ${row.classification_id === Number(selectedOption) ? 'selected': ''}>
+      ${row.classification_name}
+      </option>`
+  }))
+  return options
+}
 
   /* ****************************************
  * Middleware For Handling Errors
