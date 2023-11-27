@@ -14,7 +14,13 @@ res.redirect('/'); } %>
 <!-- ***************************
  *  Error Message Block
  * ************************** -->
-
+ <% if (errors) { %>
+  <ul class="notice">
+      <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+      <% }) %>
+  </ul>
+<% } %>
   <!-- Add New Vehicle Form -->
   <div class="newVehicle-wrapper">
     <form

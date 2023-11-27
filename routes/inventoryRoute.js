@@ -10,6 +10,7 @@ const invController = require("../controllers/invController");
 const utilities = require("../utilities");
 
 const classificationValidate = require('../utilities/inventory-validation')
+const invValidate = require('../utilities/inventory-validation')
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
 
@@ -28,9 +29,16 @@ classificationValidate.classificationRules(),
 classificationValidate.checkClassificationData,
 utilities.handleErrors(invController.processNewClassification));
 
-// Add New Car
+// Add New Inventory
 router.get("/newInventory", invController.buildNewInventory); 
 
+//Post New Inventory
+router.post(
+    "/newInventory",
+    invValidate.vehicleRules(),
+    invValidate.checkInventoryData,
+    utilities.handleErrors(invController.addInventory),
+  )
 // Export the router to make it accessible in other modules
 module.exports = router;
 
