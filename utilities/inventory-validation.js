@@ -46,6 +46,7 @@ validate.checkClassificationData = async (req, res, next) => {
  *  Add New Inventory Rules
  * ********************************* */
 validate.vehicleRules = () => {
+
   return [
     body("classification_id")
     .isNumeric()
@@ -53,8 +54,8 @@ validate.vehicleRules = () => {
 
     body("inv_make")
     .trim()
-    .isLength({ min: 3 })
-    .withMessage("Make must be longer than 3 characters"),
+    .isLength({ min: 2 })
+    .withMessage("Make must be longer than 2 characters"),
 
     body("inv_model")
     .trim()
@@ -107,10 +108,12 @@ validate.checkInventoryData = async (req, res, next) => {
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
+
+    console.log("sticky", errors);
     let nav = await utilities.getNav()
     let classificationDropDown = await utilities.getClassification(classification_id)
     res.render("./inventory/add-inventory", {
-      errors: null,
+      errors,
       title: "Add Vehicle",
       nav,
       classificationDropDown,

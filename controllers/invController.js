@@ -124,12 +124,14 @@ invCont.buildaddClassification = async function (req, res, next) {
 *  Process New Classification
 * *************************************** */
  invCont.processNewClassification = async function(req, res, next) {
-  let nav = await utilities.getNav()
+
   const { classification_name } = req.body
 
   const classificationResult = await invModel.processNewClassification(
     classification_name
   )
+
+  let nav = await utilities.getNav()
 
   if (classificationResult) {
     req.flash(
@@ -174,6 +176,9 @@ invCont.addInventory = async function (req, res, next) {
   let classificationDropDown= await utilities.getClassification()
   const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
 
+
+  console.log("i got data!", classification_id, inv_make, inv_model, inv_year, inv_description,
+   inv_image, inv_thumbnail)
   const regResult = await invModel.addInventory(
     classification_id, 
     inv_make, 

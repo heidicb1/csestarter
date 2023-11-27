@@ -79,7 +79,7 @@ async function checkExistingClassification(classification_name) {
 /* ***************************
  *  INSERT new vehicle
  * ************************** */
-async function processVehicle(
+async function addInventory(
   classification_id,
   inv_make,
   inv_model,
@@ -118,5 +118,5 @@ module.exports = {
   getInventoryItemDetailsById,
   processNewClassification,
   checkExistingClassification,
-  processVehicle
+  addInventory
 };

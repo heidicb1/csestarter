@@ -29,11 +29,11 @@ res.redirect('/'); } %>
       method="post"
     >
     <!-- Dropdown for Classifications -->
-<label class="newVehicle-label" for="classification">Classification:</label>
+<label class="newVehicle-label" for="classification_id">Classification:</label>
 <select 
 class="newVehicle-input" 
-id="classification" 
-name="classification" 
+id="classification_id" 
+name="classification_id" 
 required>
   <%- classificationDropDown %>
 </select>
@@ -46,6 +46,7 @@ required>
         id="inv_make"
         name="inv_make"
         required
+        pattern=""
         value="<%= locals.inv_make %>"
       />
 
