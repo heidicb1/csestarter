@@ -109,7 +109,7 @@ validate.checkInventoryData = async (req, res, next) => {
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
     let classificationDropDown = await utilities.getClassification(classification_id)
-    res.render("./inventory/addInventory", {
+    res.render("./inventory/add-inventory", {
       errors: null,
       title: "Add Vehicle",
       nav,

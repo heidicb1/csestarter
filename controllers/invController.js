@@ -200,7 +200,7 @@ invCont.addInventory = async function (req, res, next) {
     })
   } else {
     req.flash("error", "Vehicle addition failed")
-    res.status(501).render("./inventory/addInventory", {
+    res.status(501).render("./inventory/add-inventory", {
       title: "Add Vehicle",
       nav,
       classificationDropDown,
