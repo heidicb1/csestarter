@@ -38,6 +38,7 @@ async function buildAccountManagementView(req, res, next) {
   res.render("account/accountManagement", {
     title: "Account Management",
     nav,
+    errors: null,
   });
 }
 

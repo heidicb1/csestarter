@@ -17,13 +17,17 @@ const regValidate = require('../utilities/account-validation')
  * Login view error handling middleware, controller-based request
  * Route to build login view
  */
-router.get("/login", utilities.handleErrors(accountController.buildLogin));
+router.get(
+  "/login", 
+  utilities.handleErrors(accountController.buildLogin));
 
 /* 
  * Login view error handling middleware, controller-based request
  * Route to build login view
  */
-router.get("/register", utilities.handleErrors(accountController.buildRegister))
+router.get(
+  "/register", 
+  utilities.handleErrors(accountController.buildRegister))
 
 /* Post the registarion information into the database*/
 // Process the registration data
@@ -43,7 +47,10 @@ router.post(
 )
 
 // Default route for account management view WEEK 5 ???
-router.get("/accountManagement", utilities.handleErrors(accountController.buildAccountManagementView));
+router.get(
+  "/", 
+  utilities.checkLogin, 
+  utilities.handleErrors(accountController.buildAccountManagementView));
 
 // Export the router to make it accessible in other modules
 module.exports = router;

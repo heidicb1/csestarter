@@ -182,5 +182,17 @@ Util.checkJWTToken = (req, res, next) => {
   }
 };
 
+/* ****************************************
+ *  Check Login  WEEK 5
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
 // Export the Util object to make the utility function accessible in other modules
 module.exports = Util;
