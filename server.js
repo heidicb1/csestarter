@@ -7,7 +7,7 @@
  * Require Statements
  *************************/
 const session = require("express-session");
-const pool = require("./database/"); // Make sure to replace this with your actual database connection
+const pool = require("./database/"); 
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
@@ -18,6 +18,8 @@ const inventoryRoute = require("./routes/inventoryRoute");
 const utilities = require("./utilities");
 const errorRoute = require("./routes/errorRoute");
 const bodyParser = require("body-parser");
+// WEEK 5
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -49,6 +51,10 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+//WEEK 5
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates

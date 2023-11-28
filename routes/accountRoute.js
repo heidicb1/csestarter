@@ -34,13 +34,16 @@ router.post(
     utilities.handleErrors(accountController.registerAccount)
   )
 
-  // Process the login attempt
+// Process the login request WEEK 5
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
 )
+
+// Default route for account management view WEEK 5 ???
+router.get("/accountManagement", utilities.handleErrors(accountController.buildAccountManagementView));
 
 // Export the router to make it accessible in other modules
 module.exports = router;

@@ -1,6 +1,9 @@
 // Import the database connection pool from the "../database/" module
 const pool = require("../database/");
 
+//WEEK 5
+const bcrypt = require("bcryptjs");
+
 /* *****************************
  * Register new account in the database
  * *************************** */
@@ -46,8 +49,45 @@ async function checkUserEmail(account_email){
     }
   }
 
+  /* *****************************
+* Return account data using email address WEEK 5
+* ***************************** */
+async function getAccountByEmail (account_email) {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_email = $1',
+      [account_email])
+    return result.rows[0]
+  } catch (error) {
+    return new Error("No matching email found")
+  }
+}
+
+/* **********************
+ *   Check password WEEK 5
+ * ********************* */
+async function checkPassword(account_email, account_password) {
+  try {
+      const sql = "SELECT * FROM account WHERE account_email = $1";
+      const result = await pool.query(sql, [account_email]);
+
+      if (result.rows.length > 0) {
+          const storedPassword = result.rows[0].account_password;
+          // Compare the provided password with the stored hashed password
+          return await bcrypt.compare(account_password, storedPassword);
+      }
+
+      return false; // No matching email found
+  } catch (error) {
+      throw error;
+  }
+}
+
+
 module.exports = {
     registerAccount,
     checkExistingEmail,
-    checkUserEmail
+    checkUserEmail,
+    getAccountByEmail, 
+    checkPassword
  }

@@ -4,6 +4,10 @@ const invModel = require("../models/inventory-model");
 // Create an object to hold utility functions
 const Util = {};
 
+//WEEK 5
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -138,6 +142,45 @@ Util.getClassification = async function (selectedOption) {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  // Check if the JWT token is present in the request cookies
+  if (req.cookies.jwt) {
+    // Verify the JWT token using the provided secret key
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        // If there's an error in verifying the token
+        if (err) {
+          // Flash a message for the user to log in
+          req.flash("Please log in");
+
+          // Clear the invalid token cookie
+          res.clearCookie("jwt");
+
+          // Redirect the user to the login page
+          return res.redirect("/account/login");
+        }
+
+        // If the token is successfully verified, store account data in res.locals
+        res.locals.accountData = accountData;
+
+        // Set a flag to indicate that the user is logged in
+        res.locals.loggedin = 1;
+
+        // Continue to the next middleware or route handler
+        next();
+      }
+    );
+  } else {
+    // If no JWT token is present, continue to the next middleware or route handler
+    next();
+  }
+};
 
 // Export the Util object to make the utility function accessible in other modules
 module.exports = Util;

@@ -1,0 +1,22 @@
+<!-- ***************************
+ *  The Content Heading
+ * ************************** -->
+ <% if (title) { %>
+    <!-- If a title is provided, display an h1 heading with the title -->
+    <h1><%= title %></h1>
+    <% } else { // If no title is provided, redirect to the home page
+    res.redirect('/'); } %>
+    
+    <!-- ***************************
+        *  A Message Block
+        * ************************** -->
+    <%- messages() %>
+        
+    <!-- ***************************
+    *  Links
+    * ************************** -->
+    <div class="managementView">
+      <ul>
+        <li><a href="#">Edit Account Information</a></li>
+      </ul>
+    </div>
