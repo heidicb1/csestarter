@@ -39,6 +39,10 @@ router.post(
     invValidate.checkInventoryData,
     utilities.handleErrors(invController.addInventory),
   )
-// Export the router to make it accessible in other modules
+
+  //Account Managment Classification Edit WEEK 5
+  router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+  // Export the router to make it accessible in other modules
 module.exports = router;
 

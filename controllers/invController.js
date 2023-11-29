@@ -99,11 +99,12 @@ invCont.showItemDetail = async function (req, res) {
 invCont.buildManagementView = async function (req, res, next) {
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
-
-    res.render("./inventory/management", {
+    const classificationSelect =  await utilities.getClassification() // WEEK 5
+      res.render("./inventory/management", {
       title: "Inventory Management",
       nav,
       errors: null,
+      classificationSelect
     });
   }
 
@@ -214,6 +215,24 @@ invCont.addInventory = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Return Inventory by Classification As JSON WEEK 5
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  try {
+    const classification_id = parseInt(req.params.classification_id);
+    const invData = await invModel.getInventoryByClassificationId(classification_id);
+
+    if (invData.length > 0) {
+      return res.json(invData);
+    } else {
+      return res.status(404).json({ error: "No data returned" });
+    }
+  } catch (error) {
+    console.error("Error in getInventoryJSON:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 // Export the invCont object to make the controller functions accessible in other modules
 module.exports = invCont;
