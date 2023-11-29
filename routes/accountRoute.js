@@ -46,7 +46,7 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
-// Default route for account management view WEEK 5 ???
+// Default route for account management view WEEK 5
 router.get(
   "/", 
   utilities.checkLogin, 
