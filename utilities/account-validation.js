@@ -47,26 +47,101 @@ body("account_email")
     ]
   }
 
-  /* ******************************
- * Check data and return errors or continue to registration
+/* ******************************
+ * Check registration data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
-    const { account_firstname, account_lastname, account_email } = req.body
-    let errors = []
-    errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      let nav = await utilities.getNav()
-      res.render("account/register", {
-        errors,
-        title: "Registration",
-        nav,
-        account_firstname,
-        account_lastname,
-        account_email,
-      })
-      return
-    }
-    next()
+  // Destructure the relevant fields from the request body
+  const { account_firstname, account_lastname, account_email } = req.body;
+
+  // Initialize an array to store validation errors
+  let errors = [];
+
+  // Use the validationResult function to check for validation errors
+  errors = validationResult(req);
+
+  // Check if there are validation errors
+  if (!errors.isEmpty()) {
+    // If there are errors, get navigation data
+    let nav = await utilities.getNav();
+
+    // Render the "account/register" view with error messages and form data
+    res.render("account/register", {
+      errors,
+      title: "Registration",
+      nav,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+
+    // Return to prevent further processing if there are errors
+    return;
   }
+
+  // If there are no validation errors, continue to the next middleware or route
+  next();
+};
+
   
-  module.exports = validate
+  /* **********************************
+ * Login Data Validation Rules WEEK 5
+ * ********************************* */
+validate.loginRules = () => {
+  return [
+    // Valid email is required
+    body('account_email')
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage('A valid email is required.'),
+
+    // Password is required
+    body('account_password')
+      .trim()
+      .notEmpty()
+      .withMessage('Password is required.'),
+  ];
+};
+
+/* ******************************
+ * Check login data and return errors or continue to login WEEK 5
+ * ***************************** */
+validate.checkLoginData = async (req, res, next) => {
+  const { account_email, account_password } = req.body;
+
+  // Get the array of errors directly
+  const errors = validationResult(req).array();
+
+  // Check if the email exists in the database
+  const emailExists = await accountModel.checkExistingEmail(account_email);
+  if (!emailExists) {
+    errors.push({ msg: 'Invalid email or password.' });
+  } else {
+    // If the email exists, check if the provided password is valid
+    const isValidPassword = await accountModel.checkPassword(account_email, account_password);
+    if (!isValidPassword) {
+      errors.push({ msg: 'Invalid email or password.' });
+    }
+  }
+
+  // If there are errors, render the login view with error messages and form data
+  if (errors.length > 0) {
+    let nav = await utilities.getNav();
+    res.render('account/login', {
+      errors,
+      title: 'Login',
+      nav,
+      account_email,
+    });
+
+    // Return to prevent further processing if there are errors
+    return;
+  }
+
+  // If there are no errors, continue to the next middleware or route
+  next();
+};
+
+
+module.exports = validate;
