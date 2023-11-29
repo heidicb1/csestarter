@@ -186,9 +186,12 @@ Util.checkJWTToken = (req, res, next) => {
  *  Check Login  WEEK 5
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
+  console.log("Checking login status...");
   if (res.locals.loggedin) {
+    console.log("User is logged in. Proceeding to next middleware.");
     next()
   } else {
+    console.log("User is not logged in. Redirecting to login page.");
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }

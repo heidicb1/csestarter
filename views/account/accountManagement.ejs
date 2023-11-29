@@ -10,13 +10,11 @@
     <!-- ***************************
         *  A Message Block
         * ************************** -->
-    <%- messages() %>
-        
+<%- messages() %>
+        <h2 class="account management"> Welcome <%= locals.account_firstname %>!</h2>
     <!-- ***************************
     *  Links
     * ************************** -->
     <div class="managementView">
-      <ul>
-        <li><a href="#">Edit Account Information</a></li>
-      </ul>
+      <a href="#">Edit Account Information</a>
     </div>

@@ -116,14 +116,12 @@ app.use(async (err, req, res, next) => {
   } else if (err.status == 404) {
     message = notFoundMessage;
   } else {
-    message = serverErrorMessage; // Default to the server error message for other cases
+    message = serverErrorMessage; 
   }
-
-  // Render the error page with relevant details
   res.render("errors/error", {
-    title: err.status || "Server Error", // Set the title to the error status or default to 'Server Error'
-    message, // Pass the error message to the view
-    nav, // Pass navigation data to the view
+    title: err.status || "Server Error", 
+    message,
+    nav, 
   });
 });
 

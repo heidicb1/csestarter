@@ -29,7 +29,7 @@ router.get(
   "/register", 
   utilities.handleErrors(accountController.buildRegister))
 
-/* Post the registarion information into the database*/
+/* Post the registration information into the database*/
 // Process the registration data
 router.post(
     "/register",
