@@ -20,7 +20,7 @@ router.get("/detail/:invId", invController.showItemDetail);
 // Add Vehicle Managment Route
 router.get("/", invController.buildManagementView); 
 
-// Deliver New Classification View THIS IS GOOD
+// Deliver New Classification View 
 router.get("/addClassification", utilities.handleErrors(invController.buildaddClassification)); 
 
 //Post New Classification
@@ -39,6 +39,42 @@ router.post(
     invValidate.checkInventoryData,
     utilities.handleErrors(invController.addInventory),
   )
-// Export the router to make it accessible in other modules
+
+  //Account Managment Classification Edit WEEK 5
+  router.get("/getInventory/:classification_id", 
+  //utilities.checkAccountType  ADD LATER IN THE WEEK
+  utilities.handleErrors(invController.getInventoryJSON))
+
+  //Edit Inventory Route WEEK 5
+router.get(
+  "/edit/:inv_id", 
+  //checkAuthorization, WHAT IS THIS ONE NAMED??? LATER IN WEEK?
+  utilities.handleErrors(invController.updateInventoryView) 
+)
+
+// Route to handle the "POST" request for updating inventory THIS POST REDIRECTS FUNNY
+router.post(
+  "/update/",
+  //invValidate.vehicleRules(), DO I NEED THIS ????
+  invValidate.checkUpdateData, 
+  utilities.handleErrors(invController.updateInventory) 
+  );
+
+  // Delete Inventory Item
+  router.get(
+    "/delete/:inv_id", 
+    //checkAuthorization, WHAT IS THIS ONE NAMED??? LATER IN WEEK?
+    utilities.handleErrors(invController.deleteInventoryView) 
+  )
+
+    // Delete Inventory Item
+    router.post(
+      "/delete", 
+      //checkAuthorization, WHAT IS THIS ONE NAMED??? LATER IN WEEK?
+      utilities.handleErrors(invController.deleteItem) 
+    )
+
+  
+  // Export the router to make it accessible in other modules
 module.exports = router;
 

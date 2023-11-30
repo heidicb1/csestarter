@@ -1,0 +1,70 @@
+<!-- ***************************
+ *  The Content Heading
+ * ************************** -->
+<% if (title) { %>
+<!-- If a title is provided, display an h1 heading with the title -->
+<h1 class="deleteInventoryTitle"><%= title %></h1>
+<% } else { // If no title is provided, redirect to the home page
+res.redirect('/'); } %>
+
+<!-- ***************************
+     *  A Message Block
+     * ************************** -->
+<% messages() %>
+<!-- ***************************
+ *  Error Message Block
+ * ************************** -->
+ <% if (errors) { %>
+  <ul class="notice">
+      <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+      <% }) %>
+  </ul>
+<% } %>
+  <!-- Delete Inventory Form  THE ACTION IS DUPLICATING THE URL ADDRESS ????? -->
+  <div class="deleteInv-wrapper">
+    <form
+      class="deleteInv-form"
+      action="/"
+      method="post"
+    >
+
+
+      
+      <input
+        class="newVehicle-input"
+        type="text"
+        id="inv_make"
+        name="inv_make"
+        required
+        placeholder="2 character minimum"
+        pattern=".{2,}"
+        value="<%= locals.inv_make %>"
+        readonly>
+
+      <label class="newVehicle-label" for="inv_model">Model:</label>
+      <input
+        class="newVehicle-input"
+        type="text"
+        id="inv_model"
+        name="inv_model"
+        required
+        value="<%= locals.inv_model %>"
+        readonly>
+
+      <label class="newVehicle-label" for="inv_year">Year:</label>
+      <input
+        class="newVehicle-input"
+        type="text"
+        id="inv_year"
+        name="inv_year"
+        placeholder="4-digit year"
+        value="<%= locals.inv_year %>"
+        pattern="^\d{4}$"
+        required
+        readonly>
+        <p>Confirm Deletion - The delete is permanent.</p>
+        <button type="submit">Delete Vehicle</button>
+    </form>
+  </div>
+
