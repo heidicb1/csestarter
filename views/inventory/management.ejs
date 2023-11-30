@@ -15,13 +15,14 @@ res.redirect('/'); } %>
 <!-- ***************************
 *  Links
 * ************************** -->
+
 <div class="managementView">
   <ul>
     <li><a href="/inv/addClassification">Add New Classification</a></li>
     <li><a href="/inv/newInventory">Add New Inventory</a></li>
   </ul>
 </div>
-
+<div class="managementTableWrapper">
 <h2>Manage Inventory</h2>
 <p>Please select a classification</p>
 <!--Classification DropDown Menu-->
@@ -33,7 +34,8 @@ required>
   <%- classificationSelect %>
 </select>
 
-<table id="inventoryDisplay"></table>
+<table class="inventoryTable" id="inventoryDisplay"></table>
+</div>
 <noscript>JavaScript must be enabled to use this page.</noscript>
 
 <script src="../../js/inventory.js"></script>

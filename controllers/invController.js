@@ -234,6 +234,172 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 };
 
+/* ***************************
+ *  Build the Update Inventory View with Data WEEK 5
+ * ************************** */
+invCont.updateInventoryView = async function (req, res, next) {
+  try {
+    // Extract the inventory ID from the URL parameter
+    const inv_id = parseInt(req.params.inv_id);
+
+    // Retrieve navigation data using utility function
+    let nav = await utilities.getNav();
+
+    // Fetch details of the inventory item based on inv_id
+    const itemData = await invModel.getInventoryItemDetailsById(inv_id);
+
+    // Fetch classification options for the dropdown
+    let classificationSelect = await utilities.getClassification(itemData.classification_id);
+
+    // Generate a string representing the item name
+    const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+
+    // Render the edit-inventory view with the retrieved data
+    res.render("./inventory/editInventoryView", {
+      title: "Edit " + itemName,
+      nav,
+      classificationSelect: classificationSelect,
+      errors: null,
+      inv_id: itemData.inv_id,
+      inv_make: itemData.inv_make,
+      inv_model: itemData.inv_model,
+      inv_year: itemData.inv_year,
+      inv_description: itemData.inv_description,
+      inv_image: itemData.inv_image,
+      inv_thumbnail: itemData.inv_thumbnail,
+      inv_price: itemData.inv_price,
+      inv_miles: itemData.inv_miles,
+      inv_color: itemData.inv_color,
+      classification_id: itemData.classification_id
+    });
+  } catch (error) {
+    console.error("Error in updateInventoryView:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+/* ***************************
+ *  Process Update Inventory View with Data WEEK 5
+ * ************************** */
+invCont.updateInventory = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const {
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id,
+    } = req.body;
+
+    const updateResult = await invModel.updateInventory(
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id
+    );
+
+    console.log('updateResult:', updateResult);
+
+    if (updateResult) {
+      const itemName = updateResult.inv_make + " " + updateResult.inv_model;
+      req.flash("notice", `The ${itemName} was successfully updated.`);
+      // Fetch classification options for the dropdown
+      const classificationSelect = await utilities.getClassification(classification_id);
+      res.status(201).render("./inventory/management", {
+        title: "Inventory Management",
+        nav,
+        classificationSelect
+      });
+    } else {
+      req.flash("error", "Vehicle update failed");
+      res.status(501).render("./inventory/editInventoryView", {
+        title: "Edit " + itemName, 
+        nav,
+        errors: null,
+      });
+    }
+  } catch (error) {
+    // Add console log to check for errors
+    console.error('Error in updateInventory:', error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+/* ***************************
+ *  Build the Delete Inventory View with Data WEEK 5
+ * ************************** */
+invCont.deleteInventoryView = async function (req, res, next) {
+  try {
+    // Extract the inventory ID from the URL parameter
+    const inv_id = parseInt(req.params.inv_id);
+
+    // Retrieve navigation data using utility function
+    let nav = await utilities.getNav();
+
+    // Fetch details of the inventory item based on inv_id
+    const itemData = await invModel.getInventoryItemDetailsById(inv_id);
+
+    // Generate a string representing the item name
+    const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+
+    // Render the delete-inventory view with the retrieved data
+    res.render("./inventory/delete-confirm", {
+      title: "Delete " + itemName,
+      nav,
+      errors: null,
+      inv_id: itemData.inv_id,
+      inv_make: itemData.inv_make,
+      inv_model: itemData.inv_model,
+      inv_year: itemData.inv_year,
+      classification_id: itemData.classification_id 
+    });
+  } catch (error) {
+    console.error("Error in DeleteInventoryView:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+/* ***************************
+ *  Update Delete Inventory View with Data WEEK 5
+ * ************************** */
+invCont.deleteItem = async function (req, res, next){
+  let nav = await utilities.getNav();
+  const inv_id = parseInt(req.body.inv_id)
+
+  const deleteResult = await invModel.deleteInventory(inv_id)
+  if (deleteResult) {
+    req.flash(
+      "notice",
+      "The deletion was successful"
+    )
+    res.status(201).render("./inventory/management", {
+      title: "Inventory Management",
+      nav
+    })
+  } else {
+    req.flash("error", "Vehicle deletion failed")
+    res.status(501).render("./inventory/delete-confirm", {
+      title: "Delete Vehicle",
+      nav,
+      errors: null
+    })
+  }
+} 
+
 // Export the invCont object to make the controller functions accessible in other modules
 module.exports = invCont;
 

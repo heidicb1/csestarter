@@ -416,6 +416,32 @@ div.namePrice {
   color:#252339;
   padding: 5px;
 }
+.managementTableWrapper {
+  width: 60%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: #252339 solid 5px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px #252339;
+  margin-top: 20px;
+}
+.inventoryTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.inventoryTable th, .inventoryTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.inventoryTable tr:nth-child(even) {
+  background-color: #f2f2f2; 
+}
+
 
 /* **INDIVIDUAL ITEM PAGE** */
 
