@@ -21,6 +21,13 @@ router.get(
   "/login", 
   utilities.handleErrors(accountController.buildLogin));
 
+  // Logout
+  router.get(
+    "/logout",
+    utilities.handleErrors(accountController.logoutUser),
+  )
+  
+
 /* 
  * Login view error handling middleware, controller-based request
  * Route to build login view

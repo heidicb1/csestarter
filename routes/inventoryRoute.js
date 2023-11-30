@@ -18,7 +18,9 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:invId", invController.showItemDetail);
 
 // Add Vehicle Managment Route
-router.get("/", invController.buildManagementView); 
+router.get("/",
+utilities.checkAccountType,
+invController.buildManagementView); 
 
 // Deliver New Classification View 
 router.get("/addClassification", utilities.handleErrors(invController.buildaddClassification)); 
@@ -42,13 +44,13 @@ router.post(
 
   //Account Managment Classification Edit WEEK 5
   router.get("/getInventory/:classification_id", 
-  //utilities.checkAccountType  ADD LATER IN THE WEEK
+  utilities.checkAccountType, // WEEK 5 TASK 2
   utilities.handleErrors(invController.getInventoryJSON))
 
   //Edit Inventory Route WEEK 5
 router.get(
   "/edit/:inv_id", 
-  //checkAuthorization, WHAT IS THIS ONE NAMED??? LATER IN WEEK?
+  utilities.checkAccountType, // WEEK 5 TASK 2
   utilities.handleErrors(invController.updateInventoryView) 
 )
 

@@ -11,7 +11,16 @@ res.redirect('/'); } %>
  *  A Message Block
  * ************************** -->
 <% messages() %>
-
+<form action="/inv/type/<%=classification_id%>">
+<label for="">
+Sort By:
+</label>
+<select name="sort">
+<option value="name">Name</option>
+<option value="price">Price</option>
+</select>
+<input type="submit" value="Sort"/>
+</form>
 <!-- ***************************
  *  Inventory Item Display
  * ************************** -->

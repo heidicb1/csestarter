@@ -9,15 +9,30 @@ const invCont = {}
 
 // Define a controller function to handle building the inventory view by classification
 invCont.buildByClassificationId = async function (req, res, next) {
+  console.log("check",req.query.sort)
   //Error Handling
   try {
     // Extract the classification_id parameter from the URL
     const classification_id = req.params.classificationId;
 
     // Retrieve inventory data based on the classification_id
-    const data = await invModel.getInventoryByClassificationId(
-      classification_id
-    );
+    let data = "";
+    if(req.query.sort == "name"){
+      //get the cars aphbetical
+      data = await invModel.getInventoryByClassificationIdSortByName(
+        classification_id
+      );
+    } else if(req.query.sort == "price"){
+      //get by price
+      data = await invModel.getInventoryByClassificationIdSortByPrice(
+        classification_id
+      );
+    } else {
+      data = await invModel.getInventoryByClassificationId(
+        classification_id
+      );
+    }
+  
 
     // Check if the inventory data is empty or invalid
     if (!data || data.length === 0) {
@@ -38,6 +53,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     // Render the inventory view with the title, navigation, and grid data
     res.render("./inventory/classification", {
       title: className + " vehicles",
+      classification_id: classification_id.trim(),
       nav,
       grid,
     });
@@ -97,6 +113,9 @@ invCont.showItemDetail = async function (req, res) {
  *  Build mamangement view
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
+
+    console.log("check user",req)
+
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
     const classificationDropDown =  await utilities.getClassification() // WEEK 5
@@ -388,12 +407,12 @@ invCont.deleteItem = async function (req, res, next) {
 
     // Pass the inv_id value to a model-based function to delete the inventory item
     const deleteResult = await invModel.deleteInventory(inv_id);
-
+    console.log("check the delete", deleteResult)
     if (deleteResult) {
       // If the delete was successful, return a flash message to the inventory management view
       req.flash("notice", "The deletion was successful.")
       // Redirect to the route to rebuild the delete view for the same inventory item
-      res.status(201).redirect("./inventory/management" );
+      res.status(201).redirect("./" );
     } else {
       // If the delete failed, return a flash failure message to the delete confirmation view
       req.flash("error", "Vehicle deletion failed.");
