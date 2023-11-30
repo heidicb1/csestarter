@@ -54,15 +54,39 @@ Util.buildClassificationGrid = async function(data){
     if(data.length > 0){
       // Begin constructing the unordered list with an id of "inv-display"
       grid = '<ul id="inv-display">';
-  
-      // Iterate through each vehicle in the data and build grid items
+
+      data.forEach(vehicle => { 
+        grid += '<li class="card">';
+        grid += '<a style="height: 100%;" href="../../inv/detail/' + vehicle.inv_id + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">';
+      
+        grid += `<div style="
+          background-image: url(${vehicle.inv_thumbnail});
+          width: 100%;
+          height: 100%;
+          background-size: contain; /* Adjusted property for stretching or shrinking */
+          background-repeat: no-repeat;
+          background-position: center center;
+        "></div>`;
+
+      /*  Iterate through each vehicle in the data and build grid items
       data.forEach(vehicle => { 
         grid += '<li class ="card">';
-        grid += '<a href="../../inv/detail/' + vehicle.inv_id 
+        grid += '<a style="height:100%;" href="../../inv/detail/' + vehicle.inv_id 
           + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model 
-          + ' details"><img src="' + vehicle.inv_thumbnail 
+          + ' details">';
+          
+          
+          grid += `<div style="background-image:url(${vehicle.inv_thumbnail}); width: 100%; height:100%;
+          background-size: cover;
+          "></div>`*/
+          
+        /*  
+          grid +=  '<img src="' + vehicle.inv_thumbnail 
           + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model 
-          + ' on CSE Motors"></a>';
+          + ' on CSE Motors">';
+          */
+          
+          grid += '</a>';
         grid += '<div class="namePrice">';
         grid += '<hr>';
         grid += '<h2>';

@@ -31,6 +31,43 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+async function getInventoryByClassificationIdSortByName(classification_id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory AS i 
+        JOIN public.classification AS c 
+        ON i.classification_id = c.classification_id 
+        WHERE i.classification_id = $1
+        ORDER BY i.inv_model
+        `
+        ,
+      [classification_id]
+    );
+    return data.rows;
+  } catch (error) {
+    console.error("getclassificationsbyid error " + error);
+  }
+
+}
+
+async function getInventoryByClassificationIdSortByPrice(classification_id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory AS i 
+        JOIN public.classification AS c 
+        ON i.classification_id = c.classification_id 
+        WHERE i.classification_id = $1
+        ORDER BY i.inv_price
+        `
+        ,
+      [classification_id]
+    );
+    return data.rows;
+  } catch (error) {
+    console.error("getclassificationsbyid error " + error);
+  }
+
+}
 /* ***************************
  *  Get inventory item details by inv_id
  * ************************** */
@@ -166,6 +203,8 @@ async function deleteInventory(inv_id) {
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
+  getInventoryByClassificationIdSortByName,
+  getInventoryByClassificationIdSortByPrice,
   getInventoryItemDetailsById,
   processNewClassification,
   checkExistingClassification,
