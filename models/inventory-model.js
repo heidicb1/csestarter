@@ -152,21 +152,15 @@ async function updateInventory(
 /* ***************************
  *  DELETE new vehicle WEEK 5
  * ************************** */
-async function deleteInventory(
-  inv_id,
-) {
+async function deleteInventory(inv_id) {
   try {
-    const sql =
-      "DELETE FROM public.inventory WHERE inv_id = $1" // public.inventory???
-    const data = await pool.query(sql, [
-      inv_id
-    ])
-    return data
+    const sql = 'DELETE FROM inventory WHERE inv_id = $1'
+    const data = await pool.query(sql, [inv_id])
+  return data
   } catch (error) {
-    console.error("Delete Inventory Error")
+    new Error("Delete Inventory Error")
   }
 }
-
 
 // Export the function to make it accessible in other modules
 module.exports = {

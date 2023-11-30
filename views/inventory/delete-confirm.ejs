@@ -11,26 +11,17 @@ res.redirect('/'); } %>
      *  A Message Block
      * ************************** -->
 <% messages() %>
-<!-- ***************************
- *  Error Message Block
- * ************************** -->
- <% if (errors) { %>
-  <ul class="notice">
-      <% errors.array().forEach(error => { %>
-          <li><%= error.msg %></li>
-      <% }) %>
-  </ul>
-<% } %>
+
   <!-- Delete Inventory Form  THE ACTION IS DUPLICATING THE URL ADDRESS ????? -->
   <div class="deleteInv-wrapper">
     <form
       class="deleteInv-form"
-      action="/"
+      action="/inv/delete"
       method="post"
     >
 
 
-      
+    <label class="newVehicle-label" for="inv_make">Make:</label>
       <input
         class="newVehicle-input"
         type="text"
@@ -65,6 +56,9 @@ res.redirect('/'); } %>
         readonly>
         <p>Confirm Deletion - The delete is permanent.</p>
         <button type="submit">Delete Vehicle</button>
+        <input type="hidden" name="inv_id"
+<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"<% } %>>
+
     </form>
   </div>
 

@@ -99,12 +99,12 @@ invCont.showItemDetail = async function (req, res) {
 invCont.buildManagementView = async function (req, res, next) {
     // Retrieve navigation data using utility function
     let nav = await utilities.getNav();
-    const classificationSelect =  await utilities.getClassification() // WEEK 5
+    const classificationDropDown =  await utilities.getClassification() // WEEK 5
       res.render("./inventory/management", {
       title: "Inventory Management",
       nav,
       errors: null,
-      classificationSelect
+      classificationDropDown
     });
   }
 
@@ -201,7 +201,6 @@ invCont.addInventory = async function (req, res, next) {
     res.status(201).render("./inventory/management", {
       title: "Inventory Management",
       nav,
-      errors: null,
       classificationDropDown,
     })
   } else {
@@ -249,7 +248,7 @@ invCont.updateInventoryView = async function (req, res, next) {
     const itemData = await invModel.getInventoryItemDetailsById(inv_id);
 
     // Fetch classification options for the dropdown
-    let classificationSelect = await utilities.getClassification(itemData.classification_id);
+    let classificationDropDown = await utilities.getClassification(itemData.classification_id);
 
     // Generate a string representing the item name
     const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
@@ -258,7 +257,7 @@ invCont.updateInventoryView = async function (req, res, next) {
     res.render("./inventory/editInventoryView", {
       title: "Edit " + itemName,
       nav,
-      classificationSelect: classificationSelect,
+      classificationDropDown: classificationDropDown,
       errors: null,
       inv_id: itemData.inv_id,
       inv_make: itemData.inv_make,
@@ -318,11 +317,11 @@ invCont.updateInventory = async function (req, res, next) {
       const itemName = updateResult.inv_make + " " + updateResult.inv_model;
       req.flash("notice", `The ${itemName} was successfully updated.`);
       // Fetch classification options for the dropdown
-      const classificationSelect = await utilities.getClassification(classification_id);
+      const classificationDropDown = await utilities.getClassification(classification_id);
       res.status(201).render("./inventory/management", {
         title: "Inventory Management",
         nav,
-        classificationSelect
+        classificationDropDown
       });
     } else {
       req.flash("error", "Vehicle update failed");
@@ -340,66 +339,76 @@ invCont.updateInventory = async function (req, res, next) {
 };
 
 /* ***************************
- *  Build the Delete Inventory View with Data WEEK 5
+ *  Build the Delete Confirmation View WEEK 5
  * ************************** */
 invCont.deleteInventoryView = async function (req, res, next) {
   try {
     // Extract the inventory ID from the URL parameter
     const inv_id = parseInt(req.params.inv_id);
 
-    // Retrieve navigation data using utility function
+    // Build the navigation for the delete confirmation view
     let nav = await utilities.getNav();
 
-    // Fetch details of the inventory item based on inv_id
+    // Get data for the inventory item from the database
     const itemData = await invModel.getInventoryItemDetailsById(inv_id);
 
-    // Generate a string representing the item name
+    // Build a name variable to hold the inventory item's make and model
     const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
 
-    // Render the delete-inventory view with the retrieved data
+    // Render the delete confirmation view
     res.render("./inventory/delete-confirm", {
-      title: "Delete " + itemName,
+      title: "Delete Confirmation: " + itemName,
       nav,
       errors: null,
       inv_id: itemData.inv_id,
       inv_make: itemData.inv_make,
       inv_model: itemData.inv_model,
       inv_year: itemData.inv_year,
-      classification_id: itemData.classification_id 
+      inv_description: itemData.inv_description,
+      inv_image: itemData.inv_image,
+      inv_thumbnail: itemData.inv_thumbnail,
+      inv_price: itemData.inv_price,
+      inv_miles: itemData.inv_miles,
+      inv_color: itemData.inv_color,
+      classification_id: itemData.classification_id
     });
   } catch (error) {
-    console.error("Error in DeleteInventoryView:", error);
+    console.error("Error in deleteInventoryView:", error);
     res.status(500).send("Internal Server Error");
   }
 };
 
 /* ***************************
- *  Update Delete Inventory View with Data WEEK 5
+ *  Process Delete Inventory View with Data WEEK 5
  * ************************** */
-invCont.deleteItem = async function (req, res, next){
-  let nav = await utilities.getNav();
-  const inv_id = parseInt(req.body.inv_id)
+invCont.deleteItem = async function (req, res, next) {
+  try {
+    // Collect the inv_id value from the request.body object
+    const inv_id = parseInt(req.body.inv_id);
 
-  const deleteResult = await invModel.deleteInventory(inv_id)
-  if (deleteResult) {
-    req.flash(
-      "notice",
-      "The deletion was successful"
-    )
-    res.status(201).render("./inventory/management", {
-      title: "Inventory Management",
-      nav
-    })
-  } else {
-    req.flash("error", "Vehicle deletion failed")
-    res.status(501).render("./inventory/delete-confirm", {
-      title: "Delete Vehicle",
-      nav,
-      errors: null
-    })
+    // Pass the inv_id value to a model-based function to delete the inventory item
+    const deleteResult = await invModel.deleteInventory(inv_id);
+
+    if (deleteResult) {
+      // If the delete was successful, return a flash message to the inventory management view
+      req.flash("notice", "The deletion was successful.")
+      // Redirect to the route to rebuild the delete view for the same inventory item
+      res.status(201).redirect("./inventory/management" );
+    } else {
+      // If the delete failed, return a flash failure message to the delete confirmation view
+      req.flash("error", "Vehicle deletion failed.");
+
+      // Redirect to the route to rebuild the delete view for the same inventory item
+      res.status(501).redirect("./inventory/delete-confirm");
+    }
+  } catch (error) {
+    // Add console log to check for errors
+    console.error('Error in processDeleteItem:', error);
+
+    // Send an Internal Server Error response
+    res.status(500).send("Internal Server Error");
   }
-} 
-
+};
 // Export the invCont object to make the controller functions accessible in other modules
 module.exports = invCont;
 
