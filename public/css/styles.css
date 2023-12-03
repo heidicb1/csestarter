@@ -273,6 +273,33 @@ div.namePrice {
   font-size: 1em;
   color: #252339;
 }
+.sortBy{
+  font-size:.75em
+}
+
+.sortBy-select {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  color: #252339;
+  font-size: 16px;
+}
+
+.sortBy-btn {
+  cursor: pointer;
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 5px 20px;
+  margin-top: 15px;;
+  background-color: #ffffff;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.sortBy-btn:hover {
+  background-color: #252339;
+  color: #ffffff;
+}
 
 .classificationFormWrapper{
   max-width: 400px;
@@ -401,6 +428,22 @@ div.namePrice {
   color: #ffffff;
 }
 
+.update-btn {
+  cursor: pointer;
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 5px 20px;
+  width: 100%;
+  margin-top: 15px;;
+  background-color: #ffffff;
+  border-width: 5px;
+  border-radius: 10px;
+}
+
+.update-btn:hover {
+  background-color: #252339;
+  color: #ffffff;
+}
 
 
 /* **MANAGEMENT VIEW** */
@@ -425,6 +468,14 @@ div.namePrice {
   padding: 20px;
   box-shadow: 0 0 10px #252339;
   margin-top: 20px;
+}
+
+.manageInventory{
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #252339;
+  font-size: 16px;
 }
 .inventoryTable {
   width: 100%;
@@ -902,6 +953,15 @@ div.namePrice {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .sortBy {
+    margin-top: -25px;
+    margin-bottom: 5px;
+    float: right;
+    padding-right: 5px;
+    color: #252339;
+    font-size: .75em;
   }
 
   .card {
