@@ -11,15 +11,15 @@ res.redirect('/'); } %>
  *  A Message Block
  * ************************** -->
 <% messages() %>
-<form action="/inv/type/<%=classification_id%>">
+<form class= "sortBy" action="/inv/type/<%=classification_id%>">
 <label for="">
 Sort By:
 </label>
-<select name="sort">
-<option value="name">Name</option>
-<option value="price">Price</option>
+<select class= "sortBy-select" name="sort">
+<option class= "sortBy-option" value="name">Name</option>
+<option class= "sortBy-option" value="price">Price</option>
 </select>
-<input type="submit" value="Sort"/>
+<input class= "sortBy-btn"type="submit" value="Sort"/>
 </form>
 <!-- ***************************
  *  Inventory Item Display
