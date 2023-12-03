@@ -717,6 +717,79 @@ div.namePrice {
   font-weight: bold;
 }
 
+/* **EDIT ACCOUNT INFO** */
+/*  Update Account Form */
+.updateForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.update-form {
+  max-width: 400px;
+  width: 100%;
+  background-color: #4c96d7;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+}
+
+.update-form p {
+  font-size: 0.8em;
+  color: #ffffff;
+  margin: 10px;
+}
+
+.form--fieldset {
+  margin-bottom: 15px;
+}
+
+.update-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.update-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.update-form button {
+  cursor: pointer;
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 10px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.update-form button:hover {
+  background-color: #252339;
+  color: #ffffff;
+}
+
+/* Password Requirements Message */
+.update-form p.password-requirements {
+  font-size: 0.8em;
+  color: #ffffff;
+  width: 75%;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* !!!!!!!!!MEDIUM SCREEN!!!!!!!!!!! */
 
 @media only screen and (min-width: 37em) {

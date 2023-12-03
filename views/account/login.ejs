@@ -1,9 +1,28 @@
-<!-- The Content Heading -->
-<h1><%= title %></h1>
+<!-- ***************************
+ *  The Content Heading
+ * ************************** -->
+ <% if (title) { %>
+  <!-- If a title is provided, display an h1 heading with the title -->
+  <h1 class="classificationTitle"><%= title %></h1>
+<% } else { // If no title is provided, redirect to the home page %>
+  <% res.redirect('/'); %>
+<% } %>
 
-<!-- A Message Block for Flash message -->
-<div class="reg-processed"><%- messages() %></div>
+<!-- ***************************
+*  A Message Block
+* ************************** -->
+<% messages() %>
 
+<!-- ***************************
+*  Error Message Block
+* ************************** -->
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <%  }) %>
+  </ul>
+<% } %>
 
 <!-- Login Form -->
 <div class="login-wrapper">

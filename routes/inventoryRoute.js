@@ -32,7 +32,9 @@ classificationValidate.checkClassificationData,
 utilities.handleErrors(invController.processNewClassification));
 
 // Add New Inventory
-router.get("/newInventory", invController.buildNewInventory); 
+router.get(
+  "/newInventory", 
+invController.buildNewInventory); 
 
 //Post New Inventory
 router.post(

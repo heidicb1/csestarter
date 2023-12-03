@@ -14,6 +14,7 @@ async function buildLogin(req, res, next) {
   res.render("account/login", {
     title: "Login",
     nav,
+    errors: null,
   });
 }
 
@@ -141,6 +142,136 @@ async function accountLogin(req, res) {
 }
 
 /* ****************************************
+ * Deliver the view for editing account information
+ * *************************************** */
+async function buildEditAccount(req, res, next) {
+  // Fetch navigation data
+  let nav = await utilities.getNav();
+
+  // Retrieve account data from the response locals
+  let account = res.locals.accountData;
+
+  // Extract account ID from the request parameters
+  const account_id = parseInt(req.params.account_id);
+
+  // Render the edit account information view with necessary data
+  res.render("account/editaccount", {
+    title: "Edit Account Information",
+    nav,
+    errors: null, // If you get rid of this you will recever the Server error page
+    account_firstname: account.account_firstname,
+    account_lastname: account.account_lastname,
+    account_email: account.account_email,
+    account_id: account_id
+  });
+}
+
+
+/* ****************************************
+ * Process updated account information (POST /editaccount)
+ * *************************************** */
+async function editAccountInfo(req, res) {
+  // Fetch navigation data
+  let nav = await utilities.getNav();
+
+  // Extract account information from the request body
+  const { account_firstname, account_lastname, account_email, account_id } = req.body;
+
+  // Attempt to update the account information in the database
+  const updateResult = await accountModel.updateAccountInfo(account_firstname, account_lastname, account_email, account_id);
+
+  // Check if the update was successful
+  if (updateResult) {
+    // Clear the existing JWT cookie
+    res.clearCookie("jwt");
+
+    // Retrieve the updated account data from the database
+    const accountData = await accountModel.getAccountById(account_id);
+
+    // Generate a new JWT access token with updated account information
+    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 });
+
+    // Set the new JWT access token as an HTTP-only cookie with a maximum age of 1 hour
+    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+
+    // Flash a success message and render the account view
+    req.flash("notice", `Congratulations, ${account_firstname} you've successfully updated your account info.`);
+    res.status(201).render("account/accountManagement", {
+      title: "Edit Account Information",
+      nav,
+      errors: null,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+  } else {
+    // Flash an error message and render the account edit view again
+    req.flash("error", "Sorry, the update failed.");
+    res.status(501).render("account/editaccount", {
+      title: "Edit Account Information",
+      nav,
+      errors: null,
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
+  }
+}
+
+/* ****************************************
+ * Process updated account password (POST /editpassword)
+ * *************************************** */
+async function editAccountPassword(req, res) {
+  // Fetch navigation data
+  let nav = await utilities.getNav();
+
+  // Extract password and account ID from the request body
+  const { account_password, account_id } = req.body;
+
+  // Hash the provided password before storing it
+  let hashedPassword;
+  try {
+    // Hash the password with a cost factor of 10 (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10);
+  } catch (error) {
+    // Handle errors during password hashing
+    req.flash("notice", 'Sorry, there was an error processing the registration.');
+    res.status(500).render("account/editaccount", {
+      title: "Edit Account Password",
+      nav,
+      errors: null,
+    });
+    return; // Exit the function early in case of an error
+  }
+
+  // Attempt to update the account password in the database
+  const passwordUpdateResult = await accountModel.changeAccountPassword(hashedPassword, account_id);
+
+  // Retrieve the updated account data
+  const updatedAccount = await accountModel.getAccountById(account_id);
+
+  // Check if the password update was successful
+  if (passwordUpdateResult) {
+    // Flash a success message and render the account view
+    req.flash("notice", `Congratulations, ${updatedAccount.account_firstname} you've successfully updated your password.`);
+    res.status(201).render("account/accountManagement", {
+      title: "Edit Account Information",
+      nav,
+      errors: null,
+      account_firstname: updatedAccount.account_firstname,
+    });
+  } else {
+    // Flash an error message and render the account edit view again
+    req.flash("error", "Sorry, the password update failed.");
+    res.status(501).render("account/editaccount", {
+      title: "Edit Account Password",
+      nav,
+      errors: null,
+    });
+  }
+}
+
+/* ****************************************
 *  Logout user
 * *************************************** */
 async function logoutUser(req, res, next) {
@@ -154,5 +285,8 @@ module.exports = {
   registerAccount,
   accountLogin,
   buildAccountManagementView, 
+  buildEditAccount,
+  editAccountInfo,
+  editAccountPassword,
   logoutUser
  }
