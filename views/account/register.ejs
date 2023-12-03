@@ -1,21 +1,33 @@
-<!-- The Content Heading -->
-<h1><%= title %></h1>
+<!-- ***************************
+ *  The Content Heading
+ * ************************** -->
+ <% if (title) { %>
+  <!-- If a title is provided, display an h1 heading with the title -->
+  <h1 class="classificationTitle"><%= title %></h1>
+<% } else { // If no title is provided, redirect to the home page %>
+  <% res.redirect('/'); %>
+<% } %>
 
-<!-- A Message Block for Flash message -->
-<%- messages() %>
+<!-- ***************************
+*  A Message Block
+* ************************** -->
+<% messages() %>
 
+<!-- ***************************
+*  Error Message Block
+* ************************** -->
 <% if (errors) { %>
   <ul class="notice">
- <% errors.array().forEach(error => { %>
-   <li><%= error.msg %></li>
-<%  }) %>
- </ul>
+      <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+      <% }) %>
+  </ul>
 <% } %>
 
 <!-- Registration Form -->
 <div class="registration-wrapper">
     <form class="registration-form" action="/account/register" method="post">
-      <!-- Add your form fields here: -->
+      
       <label class="registration-label" for="account_firstname">First Name:</label>
       <input
         class="registration-input"
@@ -54,13 +66,12 @@
         title="Password must be 12 characters or longer and contain at least one digit, one uppercase letter, one lowercase letter, and one special character"
       />
 
-      <!-- Password requirements message -->
+      
       <p id="passwordRequirements" class="password-requirements">
         Password must be at least 12 characters and include 1 uppercase letter,
         1 number, and 1 special character.
       </p>
 
-      <!-- Toggle password button -->
       <button type="button" id="togglePassword">Show Password</button>
 
       <button class="registrationbtn" type="submit">Register</button>

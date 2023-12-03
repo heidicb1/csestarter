@@ -14,7 +14,6 @@ const utilities = require("../utilities")
 const regValidate = require('../utilities/account-validation')
 
 /* 
- * Login view error handling middleware, controller-based request
  * Route to build login view
  */
 router.get(
@@ -26,12 +25,8 @@ router.get(
     "/logout",
     utilities.handleErrors(accountController.logoutUser),
   )
-  
 
-/* 
- * Login view error handling middleware, controller-based request
- * Route to build login view
- */
+  //Build register View
 router.get(
   "/register", 
   utilities.handleErrors(accountController.buildRegister))
@@ -58,6 +53,27 @@ router.get(
   "/", 
   utilities.checkLogin, 
   utilities.handleErrors(accountController.buildAccountManagementView));
+
+  // Route to build account login view
+router.get(
+  "/edit/:account_id", 
+  utilities.handleErrors(accountController.buildEditAccount));
+
+// Process the updated account information
+router.post(
+  "/accountupdate",
+  regValidate.updateAccountRules(),
+  regValidate.checkEditAccountData,
+  utilities.handleErrors(accountController.editAccountInfo)
+)
+
+// Process the account password change
+router.post(
+  "/changepassword",
+  regValidate.changePasswordRules(),
+  regValidate.checkEditAccountData,
+  utilities.handleErrors(accountController.editAccountPassword)
+)
 
 // Export the router to make it accessible in other modules
 module.exports = router;
