@@ -116,12 +116,12 @@ validate.checkLoginData = async (req, res, next) => {
   // Check if the email exists in the database
   const emailExists = await accountModel.checkExistingEmail(account_email);
   if (!emailExists) {
-    errors.push({ msg: 'Invalid email or password.' });
+    errors.push({ msg: 'Invalid email.' });
   } else {
     // If the email exists, check if the provided password is valid
     const isValidPassword = await accountModel.checkPassword(account_email, account_password);
     if (!isValidPassword) {
-      errors.push({ msg: 'Invalid email or password.' });
+      errors.push({ msg: 'Invalid password.' });
     }
   }
 
@@ -136,7 +136,7 @@ validate.checkLoginData = async (req, res, next) => {
     });
 
     // Return to prevent further processing if there are errors
-    return;
+   //return;
   }
 
   // If there are no errors, continue to the next middleware or route

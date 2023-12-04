@@ -221,6 +221,7 @@ li.card {
   padding: 0;
 }
 
+
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -234,6 +235,18 @@ li.card {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.card > a{
+  height: 200px;
+}
+.card .imgBox{
+
+  width: 100%;
+  height: 100%;
+  background-size: contain; /* Adjusted property for stretching or shrinking */
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 /* Styles for the card image */
@@ -973,6 +986,7 @@ div.namePrice {
     flex-direction: column;
   }
 
+
   .card img {
     width: 100%;
     height: 100%;
@@ -1061,6 +1075,10 @@ div.namePrice {
       width: 48%;
       box-sizing: border-box;
     }
+    .card > a{
+      height: 100%;
+    }
+  
 
   }
 

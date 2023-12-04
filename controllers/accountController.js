@@ -48,6 +48,7 @@ async function buildAccountManagementView(req, res, next) {
 *  Process Registration
 * *************************************** */
 async function registerAccount(req, res) {
+ 
   let nav = await utilities.getNav()
   const { account_firstname, account_lastname, account_email, account_password } = req.body
 
@@ -94,6 +95,7 @@ async function registerAccount(req, res) {
  *  Process login request WEEK 5
  * ************************************ */
 async function accountLogin(req, res) {
+  console.log("hello 3");
   try {
     console.log("Step 1: Entering accountLogin function");
     
