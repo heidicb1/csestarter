@@ -57,16 +57,9 @@ Util.buildClassificationGrid = async function(data){
 
       data.forEach(vehicle => { 
         grid += '<li class="card">';
-        grid += '<a style="height: 100%;" href="../../inv/detail/' + vehicle.inv_id + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">';
+        grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">';
       
-        grid += `<div style="
-          background-image: url(${vehicle.inv_thumbnail});
-          width: 100%;
-          height: 100%;
-          background-size: contain; /* Adjusted property for stretching or shrinking */
-          background-repeat: no-repeat;
-          background-position: center center;
-        "></div>`;
+        grid += `<div class="imgBox" style="background-image: url(${vehicle.inv_thumbnail});"></div>`;
 
       /*  Iterate through each vehicle in the data and build grid items
       data.forEach(vehicle => { 
